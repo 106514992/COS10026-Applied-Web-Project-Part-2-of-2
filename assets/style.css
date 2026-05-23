@@ -453,7 +453,9 @@ table.fun-facts tr:hover {
    Every selector is matched to classes and IDs on jobs.html. I also ensured no other pages are affected by these styles
    ========================================================== */
 
-
+#jobs-aside {
+    background-color: transparent;
+}
 
 /* Jobs page hero styling */
 
