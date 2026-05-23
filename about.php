@@ -1,32 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
+  <?php
+$pageTitle = "About - Creative Digital Media Agency";
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - Creative Digital Media Agency</title>
-    <link rel="stylesheet" href="assets/style.css" />
-    <link rel="icon" href="assets/favicon.ico">
+$pageStyles = '
+<style>
+    .about-hero {
+        text-align: center;
+    }
+</style>
+';
 
-    <!-- Embedded CSS -->
-    <style>
-        .about-hero {
-            text-align: center;
-        }
-    </style>
-</head>
+include "header.inc";
+?>  
 
-<body>
-    <!-- Navigation -->
-    <nav aria-label="Main navigation">
-        <img src="assets/mediaflare_logo.svg" alt="MediaFlare logo" height="40" />
-        <ul>
-            <li><a href="index.php">Home</a></li>
-            <li><a href="jobs.php">Job Description</a></li>
-            <li><a href="apply.php">Apply</a></li>
-            <li><a href="about.php">About</a></li>
-        </ul>
-    </nav>
+
+   <?php include "nav.inc"; ?>
+            
+        
+    
 
     <!-- Page Header -->
     <header class="about-hero">
@@ -187,17 +177,4 @@
         </section>
     </main>
 
-    <!-- Footer from index.html -->
-    <footer>
-        <p><a href="https://cos10026group4.atlassian.net/jira/software/projects/SCRUM/summary">Jira Project</a></p>
-        <p><a href="https://106514992.github.io/COS10026-Applied-Web-Project-Part-1-of-2/index.html">Live site link</a>
-        </p>
-        <p><a href="https://github.com/106514992/COS10026-Applied-Web-Project-Part-1-of-2">GitHub Repository</a></p>
-        <p><a href="mailto:info@mediaflare.com.au"
-                aria-label="Email us at info@mediaflare.com.au">info@mediaflare.com.au</a></p>
-    </footer>
-
-
-</body>
-
-</html>
+  <?php include "footer.inc"; ?>  
