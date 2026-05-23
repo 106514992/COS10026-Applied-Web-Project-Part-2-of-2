@@ -45,6 +45,14 @@ include "header.inc";
         <div class="hero-shape" aria-hidden="true"></div>
         <h1 id="jobs-page-title">Current Job Openings</h1>
         <p>Positions available with us today</p>
+        <div>
+            <form id="jobs-search-form" action="jobs.php" method="GET">
+                <div class="search-wrapper">
+                    <input type="text" name="search_query" value="<?php echo htmlspecialchars($_GET['search_query'] ?? '') ?>" placeholder="Search jobs..." aria-label="Search jobs">
+                </div>
+                <button type="submit">Search</button>
+            </form>
+        </div>
     </header>
 
     <main id="jobs-main" aria-label="Job listings">
