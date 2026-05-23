@@ -4,6 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php 
+    if (isset($author)) {
+        echo '<meta name="author" content="'. htmlspecialchars($author) . '">';
+    }
+    ?>
     <title><?php echo $pageTitle; ?></title>
 
     <link rel="stylesheet" href="assets/style.css" />
