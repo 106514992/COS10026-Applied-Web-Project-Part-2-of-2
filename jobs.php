@@ -49,6 +49,7 @@ include "header.inc";
             <form id="jobs-search-form" action="jobs.php" method="GET">
                 <div class="search-wrapper">
                     <input type="text" name="search_query" value="<?php echo htmlspecialchars($_GET['search_query'] ?? '') ?>" placeholder="Search jobs..." aria-label="Search jobs">
+                    <img class="search-icon" src="assets/searchIcon.svg" alt="Search Icon">
                 </div>
                 <button type="submit">Search</button>
             </form>
