@@ -45,6 +45,15 @@ include "header.inc";
         <div class="hero-shape" aria-hidden="true"></div>
         <h1 id="jobs-page-title">Current Job Openings</h1>
         <p>Positions available with us today</p>
+        <div>
+            <form id="jobs-search-form" action="jobs.php" method="GET">
+                <div class="search-wrapper">
+                    <input type="text" name="search_query" value="<?php echo htmlspecialchars($_GET['search_query'] ?? '') ?>" placeholder="Search jobs..." aria-label="Search jobs">
+                    <img class="search-icon" src="assets/searchIcon.svg" alt="Search Icon">
+                </div>
+                <button type="submit">Search</button>
+            </form>
+        </div>
     </header>
 
     <main id="jobs-main" aria-label="Job listings">
@@ -134,16 +143,4 @@ include "header.inc";
 
     </main>
 
-
-    <!-- Footer from index.html -->
-    <footer>
-        <p><a href="https://cos10026group4.atlassian.net/jira/software/projects/SCRUM/summary">Jira Project</a></p>
-        <p><a href="https://106514992.github.io/COS10026-Applied-Web-Project-Part-1-of-2/index.html">Live site link</a></p>
-        <p><a href="https://github.com/106514992/COS10026-Applied-Web-Project-Part-1-of-2">GitHub Repository</a></p>
-        <p><a href="mailto:info@mediaflare.com.au"
-                aria-label="Email us at info@mediaflare.com.au">info@mediaflare.com.au</a></p>
-    </footer>
-
-</body>
-
-</html>
+<?php include "footer.inc"; ?>

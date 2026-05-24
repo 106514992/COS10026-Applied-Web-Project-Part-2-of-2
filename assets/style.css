@@ -570,3 +570,63 @@ table.fun-facts tr:hover {
 #jobs-content section ol {
     margin-left: 30px;
 }
+
+#jobs-search-form {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 3rem;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 2rem;
+}
+
+.search-wrapper {
+    flex: 1;
+    position: relative;
+}
+
+#jobs-search-form input[type="text"] {
+    width: 100%;
+    padding: 0.7rem 0.85rem 0.7rem 2.5rem;
+    border: 1.5px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    color: #1a1a2e;
+    text-overflow: ellipsis;
+}
+
+#jobs-search-form input[type="text"]:focus {
+    border-color: #e94560;
+    box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.12);
+    outline: none;
+}
+
+.search-icon {
+    position: absolute;
+    pointer-events: none;
+    left: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 25px;
+    height: 25px;
+    opacity: 0.7;
+}
+
+#jobs-search-form button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+
+    background-color: #e94560;
+    color: #ffffff;
+}
+
+#jobs-search-form button:hover {
+    transform: translatey(-2px);
+    box-shadow: 0 4px 8px rgba(233, 69, 96, 0.2);
+}
