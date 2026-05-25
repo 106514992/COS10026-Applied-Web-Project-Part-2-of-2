@@ -50,6 +50,14 @@ nav ul li a:hover {
     color: #e94560;
 }
 
+nav img {
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    -moz-user-drag: none;
+    -webkit-tap-highlight-color: rgba(255,255,255,.1);
+}
+
 /* Hero */
 .about-hero {
     background-color: #1a1a2e;
@@ -860,16 +868,6 @@ table.fun-facts tr:hover {
     }
 }
 
-@media (max-width: 520px) {
-    #login-submit {
-        width: 100%;
-    }
-
-    #login-form {
-        padding: 0rem;
-    }
-}
-
 .form-heading {
     font-size: 1.6rem;
     font-weight: 700;
@@ -879,4 +877,43 @@ table.fun-facts tr:hover {
     border-left: 4px solid #e8385a;
     letter-spacing: -0.01em;
     line-height: 1.25;
+}
+
+#login-error {
+    color: red;
+}
+
+.login-title-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.login-title-wrapper img {
+    pointer-events: none;
+    margin-top: 7px;
+    user-select: none;
+    -webkit-user-drag: none;
+    -moz-user-drag: none;
+    -webkit-tap-highlight-color: rgba(255,255,255,.1);
+}
+
+@media (max-width: 520px) {
+    #login-submit {
+        width: 100%;
+    }
+
+    #login-form {
+        padding: 0rem;
+    }
+
+    .login-title-wrapper {
+        flex-direction: column-reverse;
+        align-items: center;
+        gap: 2rem;
+    }
+
+
 }
