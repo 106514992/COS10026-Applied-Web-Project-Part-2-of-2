@@ -15,7 +15,7 @@ $pageStyles = '
         }
 
         /* Shift aside to be above main content on narrower screens */
-        @media (max-width: 821px) {
+        @media (max-width: 899px) {
 
             #jobs-sidebar {
                 order: -1;
@@ -68,7 +68,7 @@ include "header.inc";
         </aside>
 
         <div id="jobs-content">
-        <!-- job listing details such as key responsibility, description and requirements generated with Claude AI -->
+        <!-- Job listing details such as key responsibilities, description and requirements generated with Claude AI -->
 
             <?php
             require_once 'settings.php';
@@ -79,7 +79,8 @@ include "header.inc";
             } else {
             
                 $search = htmlspecialchars(trim($_GET['search_query'] ?? ''));
-                $sanitised_search = trim(mysqli_real_escape_string($conn, $search));
+                $sanitised_search = mysqli_real_escape_string($conn, $search);
+
 
                 // if something has been searched for, only show results that match it, otherwise show all results
                 if ($search != '') {
@@ -94,8 +95,9 @@ include "header.inc";
                     );
                 } else {
                     $result = mysqli_query($conn, "SELECT * FROM jobs");
-                    
                 }
+
+                echo "<p style='margin-bottom: 2rem;'><strong>" . ($search != '' ? "Search results for '<em>$search</em>'" : "All job listings") . "</strong></p>";
 
                 if ($result && mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
@@ -107,6 +109,7 @@ include "header.inc";
                         $salary_min = htmlspecialchars($row['salary_min']);
                         $salary_max = htmlspecialchars($row['salary_max']);
                         $reports_to = htmlspecialchars($row['reports_to']);
+                        $reporting_line = htmlspecialchars($row['reporting_line']);
                         
                         // Decode JSON into arrays
                         $key_responsibilities = json_decode($row['key_responsibilities'], true);
@@ -122,10 +125,11 @@ include "header.inc";
 
                         echo "<p><strong>Description:</strong> $description</p>";
 
+                        // Salary and reporting section with formatted numbers (for commas)
                         echo "<h3>Salary & Reporting</h3>
-                                    <p>Salary: $$salary_min - $$salary_max per year</p>
-                                    <p>Reports to: $reports_to</p>
-                        ";
+                                    <p>$" . number_format($salary_min, 0) . " - $" . number_format($salary_max, 0) . " per year</p>
+                                    <p style=\"margin-bottom: 0.7rem;\"> Reports to $reports_to</p>
+                                    <p>$reporting_line</p>";
 
                         // Responsibilities section
                         echo "<h3>Key Responsibilities</h3>";
@@ -156,47 +160,17 @@ include "header.inc";
                         echo "</ul>";
                         echo "</section>";
                     }
+                } else {
+                    if ($search != '') {
+                        echo "<p>No job listings found matching your search for '<strong>$search</strong>'.</p>";
+                    } else {
+                        echo "<p>No job listings available at the moment. Please check back later.</p>";
+                    }
                 }
             }
             mysqli_close($conn);
             ?>
-
-            <!-- Job 1 -->
-            <!-- <section class="jobs-section-container" aria-labelledby="job1-sd123">
-                <header class="job-header">
-                    <h2 class="section-title" id="job1-sd123">Software Developer</h2>
-                    <p class="jobs-reference-number"><strong>Reference Number: </strong>SD123</p>
-                </header>
-                <p><strong>Description:</strong> We are seeking a motivated software developer to build and maintain
-                    web applications in a collaborative agile team.</p>
-                <h3>Salary & Reporting</h3>
-                <p>Salary: $80,000 - $100,000 per year</p>
-                <p>Reports to: Senior Development Manager</p>
-
-                <h3>Key Responsibilities</h3>
-                <ul>
-                    <li>Design, develop, and test web applications</li>
-                    <li>Collaborate with cross-functional teams</li>
-                    <li>Maintain and improve existing systems</li>
-                </ul>
-
-                <h3>Requirements</h3>
-                <h4>Essential</h4>
-                <ol>
-                    <li>Bachelor's degree in IT or related field</li>
-                    <li>Experience with HTML, CSS, and JavaScript</li>
-                    <li>Strong problem-solving skills</li>
-                </ol>
-
-                <h4>Preferable</h4>
-                <ul>
-                    <li>Experience with React or similar frameworks</li>
-                    <li>Knowledge of backend development</li>
-                </ul>
-            </section> -->
         </div>
-
-
     </main>
 
 <?php include "footer.inc"; ?>
