@@ -738,15 +738,18 @@ table.fun-facts tr:hover {
 }
 
 #login-section {
-    width: 60%;
-    max-width: 740px;
-    margin: 0 auto;
+    width: 35%;
+    min-width: 428px;
+    max-width: 600px;
+    margin: 0;
+    margin-top: -10vh;
+    padding-bottom: 0;
 }
 
 #login-form {
     display: flex;
     flex-direction: column;
-    gap: 0.2rem;
+    gap: 0.7rem;
     padding: 2rem;
     padding-top: 1rem;
 }
@@ -759,11 +762,6 @@ table.fun-facts tr:hover {
     color: #1a1a2e;
     margin-top: 0.75rem;
     display: block;
-}
-
-/* No extra top gap on the very first label in a fieldset */
-#login-form fieldset > label:first-of-type {
-    margin-top: 0.25rem;
 }
 
 /* Text inputs, email, tel, select, textarea  */
@@ -853,6 +851,8 @@ table.fun-facts tr:hover {
     #login-section {
         padding: 2rem;
         width: 100%;
+        min-width: unset;
+        margin-top: unset;
     }
 
     #login-form {
