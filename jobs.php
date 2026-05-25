@@ -50,9 +50,11 @@ include "header.inc";
                 <div class="search-wrapper">
                     <input type="text" name="search_query" value="<?php echo htmlspecialchars($_GET['search_query'] ?? '') ?>" placeholder="Search jobs..." aria-label="Search jobs">
                     <img class="search-icon" src="assets/searchIcon.svg" alt="Search Icon">
+                    <a href="jobs.php" class="clear-search-wrapper"><img class="clear-search-icon" title="Clear search" src="assets/crossIcon.svg" alt="Clear search"></a>
                 </div>
                 <button type="submit">Search</button>
             </form>
+            
         </div>
     </header>
 
@@ -73,6 +75,15 @@ include "header.inc";
             <?php
             require_once 'settings.php';
             
+            function highlight($text, $search) {
+                if ($search == '') return $text;
+                // preg_replace(pattern, replacement, subject)
+                return preg_replace(
+                    '/(' . preg_quote($search, '/') . ')/i',
+                    '<mark>$1</mark>',
+                    $text);
+            }
+
             $conn = mysqli_connect($host, $username, $password, $dbname);
             if (!$conn) {
                 die("Connection failed: " . mysqli_connect_error());
@@ -86,8 +97,10 @@ include "header.inc";
                 if ($search != '') {
                     $search_for = "%$sanitised_search%";
                     $result = mysqli_query($conn, "
-                    SELECT * FROM jobs WHERE (title LIKE '$search_for'
+                    SELECT * FROM jobs WHERE (
+                    title LIKE '$search_for'
                     OR description LIKE '$search_for'
+                    OR reference_number LIKE '$search_for'
                     OR JSON_SEARCH(LOWER(key_responsibilities), 'one', LOWER('$search_for')) IS NOT NULL
                     OR JSON_SEARCH(LOWER(requirements_essential), 'one', LOWER('$search_for')) IS NOT NULL
                     OR JSON_SEARCH(LOWER(requirements_preferable), 'one', LOWER('$search_for')) IS NOT NULL
@@ -97,24 +110,36 @@ include "header.inc";
                     $result = mysqli_query($conn, "SELECT * FROM jobs");
                 }
 
-                echo "<p style='margin-bottom: 2rem;'><strong>" . ($search != '' ? "Search results for '<em>$search</em>'" : "All job listings") . "</strong></p>";
+                // Display search results message
+                if ($search != '' && mysqli_num_rows($result) > 0) {
+                    if (mysqli_num_rows($result) == 1) {
+                        echo "<p style='margin-bottom: 2rem;'><strong>Showing 1 search result for '<em>$search</em>'</strong></p>";
+                    } else {
+                    echo "<p style='margin-bottom: 2rem;'><strong>Showing " . mysqli_num_rows($result) . " search results for '<em>$search</em>'</strong></p>";
+                    }
+                } elseif ($search != '' && mysqli_num_rows($result) == 0) {
+                    echo "<p style='margin-bottom: 2rem;'><strong>No search results found for '<em>$search</em>'</strong></p>";
+                } elseif ($search == '' && mysqli_num_rows($result) > 0) {
+                    echo "<p style='margin-bottom: 2rem;'><strong>All job listings</strong></p>";
+                }
+
 
                 if ($result && mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
 
-                        // Define fields and sanitise
-                        $refnum = htmlspecialchars($row['reference_number']);
-                        $title = htmlspecialchars($row['title']);
-                        $description = htmlspecialchars($row['description']);
-                        $salary_min = htmlspecialchars($row['salary_min']);
-                        $salary_max = htmlspecialchars($row['salary_max']);
-                        $reports_to = htmlspecialchars($row['reports_to']);
-                        $reporting_line = htmlspecialchars($row['reporting_line']);
-                        
+                        // Define fields, sanitise and highlight
+                        $refnum      = highlight(htmlspecialchars($row['reference_number']), $search);
+                        $title       = highlight(htmlspecialchars($row['title']), $search);
+                        $description = highlight(htmlspecialchars($row['description']), $search);
+                        $salary_min  = htmlspecialchars($row['salary_min']);
+                        $salary_max  = htmlspecialchars($row['salary_max']);
+                        $reports_to  = highlight(htmlspecialchars($row['reports_to']), $search);
+                        $reporting_line = highlight(htmlspecialchars($row['reporting_line']), $search);
+
                         // Decode JSON into arrays
-                        $key_responsibilities = json_decode($row['key_responsibilities'], true);
-                        $requirements_essential = json_decode($row['requirements_essential'], true);
-                        $requirements_preferable = json_decode($row['requirements_preferable'], true);
+                        $key_responsibilities  = json_decode($row['key_responsibilities'], true);
+                        $requirements_essential   = json_decode($row['requirements_essential'], true);
+                        $requirements_preferable  = json_decode($row['requirements_preferable'], true);
                         
                         // Job listing section
                         echo "<section class='jobs-section-container' aria-labelledby='job1-$refnum'>";
@@ -135,7 +160,7 @@ include "header.inc";
                         echo "<h3>Key Responsibilities</h3>";
                         echo "<ul>";
                         foreach ($key_responsibilities as $responsibility) {
-                            echo "<li>$responsibility</li>";
+                            echo "<li>" . highlight(htmlspecialchars($responsibility), $search) . "</li>";
                         }
                         echo "</ul>";
 
@@ -145,8 +170,7 @@ include "header.inc";
                                 <h4>Essential</h4>
                                 <ol>";
                         foreach ($requirements_essential as $requirement) {
-                            $req = htmlspecialchars($requirement);
-                            echo "<li>$req</li>";
+                            echo "<li>" . highlight(htmlspecialchars($requirement), $search) . "</li>";
                         }
                         echo "</ol>";
 
@@ -154,8 +178,7 @@ include "header.inc";
                         echo "<h4>Preferable</h4>";
                         echo "<ul>";
                         foreach ($requirements_preferable as $requirement) {
-                            $req = htmlspecialchars($requirement);
-                            echo "<li>$req</li>";
+                            echo "<li>" . highlight(htmlspecialchars($requirement), $search) . "</li>";
                         }
                         echo "</ul>";
                         echo "</section>";
