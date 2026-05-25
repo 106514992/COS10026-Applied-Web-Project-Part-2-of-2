@@ -68,10 +68,101 @@ include "header.inc";
         </aside>
 
         <div id="jobs-content">
-            <!-- job listing details such as key responsibility and description generated with Copilot AI -->
+        <!-- job listing details such as key responsibility, description and requirements generated with Claude AI -->
+
+            <?php
+            require_once 'settings.php';
+            
+            $conn = mysqli_connect($host, $username, $password, $dbname);
+            if (!$conn) {
+                die("Connection failed: " . mysqli_connect_error());
+            } else {
+            
+                $search = htmlspecialchars(trim($_GET['search_query'] ?? ''));
+                $sanitised_search = trim(mysqli_real_escape_string($conn, $search));
+
+                // if something has been searched for, only show results that match it, otherwise show all results
+                if ($search != '') {
+                    $search_for = "%$sanitised_search%";
+                    $result = mysqli_query($conn, "
+                    SELECT * FROM jobs WHERE (title LIKE '$search_for'
+                    OR description LIKE '$search_for'
+                    OR JSON_SEARCH(LOWER(key_responsibilities), 'one', LOWER('$search_for')) IS NOT NULL
+                    OR JSON_SEARCH(LOWER(requirements_essential), 'one', LOWER('$search_for')) IS NOT NULL
+                    OR JSON_SEARCH(LOWER(requirements_preferable), 'one', LOWER('$search_for')) IS NOT NULL
+                    )"
+                    );
+                } else {
+                    $result = mysqli_query($conn, "SELECT * FROM jobs");
+                    
+                }
+
+                if ($result && mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+
+                        // Define fields and sanitise
+                        $refnum = htmlspecialchars($row['reference_number']);
+                        $title = htmlspecialchars($row['title']);
+                        $description = htmlspecialchars($row['description']);
+                        $salary_min = htmlspecialchars($row['salary_min']);
+                        $salary_max = htmlspecialchars($row['salary_max']);
+                        $reports_to = htmlspecialchars($row['reports_to']);
+                        
+                        // Decode JSON into arrays
+                        $key_responsibilities = json_decode($row['key_responsibilities'], true);
+                        $requirements_essential = json_decode($row['requirements_essential'], true);
+                        $requirements_preferable = json_decode($row['requirements_preferable'], true);
+                        
+                        // Job listing section
+                        echo "<section class='jobs-section-container' aria-labelledby='job1-$refnum'>";
+                        echo "<header class='job-header'>";
+                        echo "<h2 class='section-title' id='job1-$refnum'>$title</h2>";
+                        echo "<p class='jobs-reference-number'><strong>Reference Number: </strong> <span>$refnum</span></p>";
+                        echo "</header>";
+
+                        echo "<p><strong>Description:</strong> $description</p>";
+
+                        echo "<h3>Salary & Reporting</h3>
+                                    <p>Salary: $$salary_min - $$salary_max per year</p>
+                                    <p>Reports to: $reports_to</p>
+                        ";
+
+                        // Responsibilities section
+                        echo "<h3>Key Responsibilities</h3>";
+                        echo "<ul>";
+                        foreach ($key_responsibilities as $responsibility) {
+                            echo "<li>$responsibility</li>";
+                        }
+                        echo "</ul>";
+
+                        // Requirements
+                        // Essential requirements:
+                        echo "<h3>Requirements</h3>
+                                <h4>Essential</h4>
+                                <ol>";
+                        foreach ($requirements_essential as $requirement) {
+                            $req = htmlspecialchars($requirement);
+                            echo "<li>$req</li>";
+                        }
+                        echo "</ol>";
+
+                        // Preferable requirements:
+                        echo "<h4>Preferable</h4>";
+                        echo "<ul>";
+                        foreach ($requirements_preferable as $requirement) {
+                            $req = htmlspecialchars($requirement);
+                            echo "<li>$req</li>";
+                        }
+                        echo "</ul>";
+                        echo "</section>";
+                    }
+                }
+            }
+            mysqli_close($conn);
+            ?>
 
             <!-- Job 1 -->
-            <section class="jobs-section-container" aria-labelledby="job1-sd123">
+            <!-- <section class="jobs-section-container" aria-labelledby="job1-sd123">
                 <header class="job-header">
                     <h2 class="section-title" id="job1-sd123">Software Developer</h2>
                     <p class="jobs-reference-number"><strong>Reference Number: </strong>SD123</p>
@@ -102,42 +193,7 @@ include "header.inc";
                     <li>Experience with React or similar frameworks</li>
                     <li>Knowledge of backend development</li>
                 </ul>
-            </section>
-
-            <!-- job 2 -->
-            <section class="jobs-section-container" aria-labelledby="job2-it456">
-                <header class="job-header">
-                    <h2 class="section-title" id="job2-it456">IT Support Technician</h2>
-                    <p class="jobs-reference-number"><strong>Reference Number: </strong>IT456</p>
-                </header>
-                <p><strong>Description:</strong> Provide technical support to staff and ensure smooth operation of
-                    IT systems across the organisation.</p>
-
-                <h3>Salary & Reporting</h3>
-                <p>Salary: $60,000 - $75,000 per year</p>
-                <p>Reports to: IT Operations Manager</p>
-
-                <h3>Key Responsibilities</h3>
-                <ul>
-                    <li>Respond to help desk requests</li>
-                    <li>Troubleshoot hardware and software issues</li>
-                    <li>Maintain system documentation</li>
-                </ul>
-
-                <h3>Requirements</h3>
-                <h4>Essential</h4>
-                <ol>
-                    <li>Diploma in Information Technology or equivalent</li>
-                    <li>Strong communication skills</li>
-                    <li>Experience with Windows and networking basics</li>
-                </ol>
-
-                <h4>Preferable</h4>
-                <ul>
-                    <li>Certifications such as CompTIA A+</li>
-                    <li>Experience in a corporate IT environment</li>
-                </ul>
-            </section>
+            </section> -->
         </div>
 
 
