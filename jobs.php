@@ -15,7 +15,7 @@ $pageStyles = '
         }
 
         /* Shift aside to be above main content on narrower screens */
-        @media (max-width: 821px) {
+        @media (max-width: 899px) {
 
             #jobs-sidebar {
                 order: -1;
@@ -50,9 +50,11 @@ include "header.inc";
                 <div class="search-wrapper">
                     <input type="text" name="search_query" value="<?php echo htmlspecialchars($_GET['search_query'] ?? '') ?>" placeholder="Search jobs..." aria-label="Search jobs">
                     <img class="search-icon" src="assets/searchIcon.svg" alt="Search Icon">
+                    <a href="jobs.php" class="clear-search-wrapper"><img class="clear-search-icon" title="Clear search" src="assets/crossIcon.svg" alt="Clear search"></a>
                 </div>
                 <button type="submit">Search</button>
             </form>
+            
         </div>
     </header>
 
@@ -68,79 +70,130 @@ include "header.inc";
         </aside>
 
         <div id="jobs-content">
-            <!-- job listing details such as key responsibility and description generated with Copilot AI -->
+        <!-- Job listing details such as key responsibilities, description and requirements generated with Claude AI -->
 
-            <!-- Job 1 -->
-            <section class="jobs-section-container" aria-labelledby="job1-sd123">
-                <header class="job-header">
-                    <h2 class="section-title" id="job1-sd123">Software Developer</h2>
-                    <p class="jobs-reference-number"><strong>Reference Number: </strong>SD123</p>
-                </header>
-                <p><strong>Description:</strong> We are seeking a motivated software developer to build and maintain
-                    web applications in a collaborative agile team.</p>
-                <h3>Salary & Reporting</h3>
-                <p>Salary: $80,000 - $100,000 per year</p>
-                <p>Reports to: Senior Development Manager</p>
+            <?php
+            require_once 'settings.php';
+            
+            function highlight($text, $search) {
+                if ($search == '') return $text;
+                // preg_replace(pattern, replacement, subject)
+                return preg_replace(
+                    '/(' . preg_quote($search, '/') . ')/i',
+                    '<mark>$1</mark>',
+                    $text);
+            }
 
-                <h3>Key Responsibilities</h3>
-                <ul>
-                    <li>Design, develop, and test web applications</li>
-                    <li>Collaborate with cross-functional teams</li>
-                    <li>Maintain and improve existing systems</li>
-                </ul>
+            $conn = mysqli_connect($host, $username, $password, $dbname);
+            if (!$conn) {
+                die("Connection failed: " . mysqli_connect_error());
+            } else {
+            
+                $search = htmlspecialchars(trim($_GET['search_query'] ?? ''));
+                $sanitised_search = mysqli_real_escape_string($conn, $search);
 
-                <h3>Requirements</h3>
-                <h4>Essential</h4>
-                <ol>
-                    <li>Bachelor's degree in IT or related field</li>
-                    <li>Experience with HTML, CSS, and JavaScript</li>
-                    <li>Strong problem-solving skills</li>
-                </ol>
 
-                <h4>Preferable</h4>
-                <ul>
-                    <li>Experience with React or similar frameworks</li>
-                    <li>Knowledge of backend development</li>
-                </ul>
-            </section>
+                // if something has been searched for, only show results that match it, otherwise show all results
+                if ($search != '') {
+                    $search_for = "%$sanitised_search%";
+                    $result = mysqli_query($conn, "
+                    SELECT * FROM jobs WHERE (
+                    title LIKE '$search_for'
+                    OR description LIKE '$search_for'
+                    OR reference_number LIKE '$search_for'
+                    OR JSON_SEARCH(LOWER(key_responsibilities), 'one', LOWER('$search_for')) IS NOT NULL
+                    OR JSON_SEARCH(LOWER(requirements_essential), 'one', LOWER('$search_for')) IS NOT NULL
+                    OR JSON_SEARCH(LOWER(requirements_preferable), 'one', LOWER('$search_for')) IS NOT NULL
+                    )"
+                    );
+                } else {
+                    $result = mysqli_query($conn, "SELECT * FROM jobs");
+                }
 
-            <!-- job 2 -->
-            <section class="jobs-section-container" aria-labelledby="job2-it456">
-                <header class="job-header">
-                    <h2 class="section-title" id="job2-it456">IT Support Technician</h2>
-                    <p class="jobs-reference-number"><strong>Reference Number: </strong>IT456</p>
-                </header>
-                <p><strong>Description:</strong> Provide technical support to staff and ensure smooth operation of
-                    IT systems across the organisation.</p>
+                // Display search results message
+                if ($search != '' && mysqli_num_rows($result) > 0) {
+                    if (mysqli_num_rows($result) == 1) {
+                        echo "<p style='margin-bottom: 2rem;'><strong>Showing 1 search result for '<em>$search</em>'</strong></p>";
+                    } else {
+                    echo "<p style='margin-bottom: 2rem;'><strong>Showing " . mysqli_num_rows($result) . " search results for '<em>$search</em>'</strong></p>";
+                    }
+                } elseif ($search != '' && mysqli_num_rows($result) == 0) {
+                    echo "<p style='margin-bottom: 2rem;'><strong>No search results found for '<em>$search</em>'</strong></p>";
+                } elseif ($search == '' && mysqli_num_rows($result) > 0) {
+                    echo "<p style='margin-bottom: 2rem;'><strong>All job listings</strong></p>";
+                }
 
-                <h3>Salary & Reporting</h3>
-                <p>Salary: $60,000 - $75,000 per year</p>
-                <p>Reports to: IT Operations Manager</p>
 
-                <h3>Key Responsibilities</h3>
-                <ul>
-                    <li>Respond to help desk requests</li>
-                    <li>Troubleshoot hardware and software issues</li>
-                    <li>Maintain system documentation</li>
-                </ul>
+                if ($result && mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
 
-                <h3>Requirements</h3>
-                <h4>Essential</h4>
-                <ol>
-                    <li>Diploma in Information Technology or equivalent</li>
-                    <li>Strong communication skills</li>
-                    <li>Experience with Windows and networking basics</li>
-                </ol>
+                        // Define fields, sanitise and highlight
+                        $refnum      = highlight(htmlspecialchars($row['reference_number']), $search);
+                        $title       = highlight(htmlspecialchars($row['title']), $search);
+                        $description = highlight(htmlspecialchars($row['description']), $search);
+                        $salary_min  = htmlspecialchars($row['salary_min']);
+                        $salary_max  = htmlspecialchars($row['salary_max']);
+                        $reports_to  = highlight(htmlspecialchars($row['reports_to']), $search);
+                        $reporting_line = highlight(htmlspecialchars($row['reporting_line']), $search);
 
-                <h4>Preferable</h4>
-                <ul>
-                    <li>Certifications such as CompTIA A+</li>
-                    <li>Experience in a corporate IT environment</li>
-                </ul>
-            </section>
+                        // Decode JSON into arrays
+                        $key_responsibilities  = json_decode($row['key_responsibilities'], true);
+                        $requirements_essential   = json_decode($row['requirements_essential'], true);
+                        $requirements_preferable  = json_decode($row['requirements_preferable'], true);
+                        
+                        // Job listing section
+                        echo "<section class='jobs-section-container' aria-labelledby='job1-$refnum'>";
+                        echo "<header class='job-header'>";
+                        echo "<h2 class='section-title' id='job1-$refnum'>$title</h2>";
+                        echo "<p class='jobs-reference-number'><strong>Reference Number: </strong> <span>$refnum</span></p>";
+                        echo "</header>";
+
+                        echo "<p><strong>Description:</strong> $description</p>";
+
+                        // Salary and reporting section with formatted numbers (for commas)
+                        echo "<h3>Salary & Reporting</h3>
+                                    <p>$" . number_format($salary_min, 0) . " - $" . number_format($salary_max, 0) . " per year</p>
+                                    <p style=\"margin-bottom: 0.7rem;\"> Reports to $reports_to</p>
+                                    <p>$reporting_line</p>";
+
+                        // Responsibilities section
+                        echo "<h3>Key Responsibilities</h3>";
+                        echo "<ul>";
+                        foreach ($key_responsibilities as $responsibility) {
+                            echo "<li>" . highlight(htmlspecialchars($responsibility), $search) . "</li>";
+                        }
+                        echo "</ul>";
+
+                        // Requirements
+                        // Essential requirements:
+                        echo "<h3>Requirements</h3>
+                                <h4>Essential</h4>
+                                <ol>";
+                        foreach ($requirements_essential as $requirement) {
+                            echo "<li>" . highlight(htmlspecialchars($requirement), $search) . "</li>";
+                        }
+                        echo "</ol>";
+
+                        // Preferable requirements:
+                        echo "<h4>Preferable</h4>";
+                        echo "<ul>";
+                        foreach ($requirements_preferable as $requirement) {
+                            echo "<li>" . highlight(htmlspecialchars($requirement), $search) . "</li>";
+                        }
+                        echo "</ul>";
+                        echo "</section>";
+                    }
+                } else {
+                    if ($search != '') {
+                        echo "<p>No job listings found matching your search for '<strong>$search</strong>'.</p>";
+                    } else {
+                        echo "<p>No job listings available at the moment. Please check back later.</p>";
+                    }
+                }
+            }
+            mysqli_close($conn);
+            ?>
         </div>
-
-
     </main>
 
 <?php include "footer.inc"; ?>
