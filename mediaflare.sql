@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 25, 2026 at 11:25 AM
+-- Generation Time: May 26, 2026 at 05:31 PM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,36 @@ SET time_zone = "+00:00";
 --
 -- Database: `mediaflare`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `about_contributions`
+--
+
+CREATE TABLE `about_contributions` (
+  `id` int(11) NOT NULL,
+  `member_name` varchar(100) NOT NULL,
+  `student_id` varchar(20) NOT NULL,
+  `assigned_page` varchar(100) NOT NULL,
+  `project1_role` text NOT NULL,
+  `project2_role` text NOT NULL,
+  `quote_original` text NOT NULL,
+  `quote_translation` text NOT NULL,
+  `dream_job` varchar(100) NOT NULL,
+  `coding_snack` varchar(100) NOT NULL,
+  `hometown` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `about_contributions`
+--
+
+INSERT INTO `about_contributions` (`id`, `member_name`, `student_id`, `assigned_page`, `project1_role`, `project2_role`, `quote_original`, `quote_translation`, `dream_job`, `coding_snack`, `hometown`) VALUES
+(1, 'Zobair Mirranay', '103979488', 'About (about.php)', 'Designed and developed the About page structure, styling, group information section, quotes, group photo and fun facts table.', 'Converted the About page to PHP, modularised it using header, nav and footer includes, and created the about_contributions database table.', 'دانش نور است و نادانی تاریکی.', 'Knowledge is light and ignorance is darkness.', 'Full-Stack Developer', 'Pistachios', 'Kabul, Afghanistan'),
+(2, 'Ivan Strmecki', '104548449', 'Apply (apply.php)', 'Form design, HTML5 validation, Flexbox layout', 'Implemented apply form functionality, PHP validation and database submission integration.', 'Tko uči, taj ne griješi uzalud.', 'He who learns does not err in vain.', 'UX Engineer', 'Coffee & Chocolate', 'Zagreb, Croatia'),
+(3, 'Sam O\'Connor', '104605182', 'Home (index.php) & Jira Management', 'Homepage design, project management', 'Assisted with homepage PHP conversion, shared project management and repository coordination.', 'Níl aon tinteán mar do thinteán féin.', 'There\'s no fireplace like your own fireplace.', 'Tech Lead', 'Cheese & Crackers', 'Dublin, Ireland'),
+(4, 'Charlie Payne', '106514992', 'Jobs (jobs.php)', 'Job listings, semantic HTML structure', 'Implemented jobs database integration, dynamic job listings and search functionality using PHP and MySQL.', 'Le travail, c\'est la liberté.', 'Work is freedom.', 'Creative Director', 'Tim Tams', 'Melbourne, Australia');
 
 -- --------------------------------------------------------
 
@@ -75,6 +105,12 @@ INSERT INTO `users` (`id`, `username`, `password`) VALUES
 --
 
 --
+-- Indexes for table `about_contributions`
+--
+ALTER TABLE `about_contributions`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `jobs`
 --
 ALTER TABLE `jobs`
@@ -91,6 +127,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `about_contributions`
+--
+ALTER TABLE `about_contributions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `jobs`
