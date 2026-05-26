@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 26, 2026 at 04:52 PM
+-- Generation Time: May 26, 2026 at 05:06 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -31,10 +31,14 @@ CREATE TABLE `about_contributions` (
   `id` int(11) NOT NULL,
   `member_name` varchar(100) NOT NULL,
   `student_id` varchar(20) NOT NULL,
-  `project1_contribution` text NOT NULL,
-  `project2_contribution` text NOT NULL,
+  `assigned_page` varchar(100) NOT NULL,
+  `project1_role` text NOT NULL,
+  `project2_role` text NOT NULL,
   `quote_original` text NOT NULL,
-  `quote_translation` text NOT NULL
+  `quote_translation` text NOT NULL,
+  `dream_job` varchar(100) NOT NULL,
+  `coding_snack` varchar(100) NOT NULL,
+  `hometown` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
