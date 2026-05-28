@@ -1,0 +1,24 @@
+    /* Centred card that wraps the success message and summary table */
+    .confirmation-box {
+        max-width: 600px;
+        margin: 3rem auto;
+        padding: 2.5rem 2rem;
+        border: 1px solid #d0d4e8;
+        border-radius: 8px;
+        background: #f9fafb;
+    }
+    .confirmation-box h1 { font-size: 1.5rem; color: #1a1f36; margin-bottom: 0.5rem; }
+
+    /* EOI number shown large in brand pink so it stands out */
+    .eoi-number { font-size: 2rem; font-weight: 700; color: #e8385a; margin: 1rem 0; }
+    .confirmation-box p { color: #4a4f6a; line-height: 1.6; }
+
+    /* Link back to the apply page */
+    .confirmation-box a { display: inline-block; margin-top: 1.5rem; color: #e8385a; text-decoration: none; font-weight: 600; }
+    .confirmation-box a:hover { text-decoration: underline; }
+    
+    /* Two-column table summarising what was submitted */
+    .summary-table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; font-size: 0.9rem; }
+    .summary-table th, .summary-table td { text-align: left; padding: 0.5rem 0.75rem; border-bottom: 1px solid #e0e3ef; }
+    .summary-table th { color: #1a1f36; font-weight: 600; width: 40%; }
+    .summary-table td { color: #4a4f6a; }
