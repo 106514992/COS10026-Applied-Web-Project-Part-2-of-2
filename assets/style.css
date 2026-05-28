@@ -67,6 +67,8 @@ nav img {
 
 /* Hero */
 .about-hero {
+    position: relative;
+    overflow: hidden;
     background-color: #1a1a2e;
     color: #ffffff;
     padding: 4rem 2rem;
