@@ -50,6 +50,14 @@ nav ul li a:hover {
     color: #e94560;
 }
 
+nav img {
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    -moz-user-drag: none;
+    -webkit-tap-highlight-color: rgba(255,255,255,.1);
+}
+
 /* Hero */
 .about-hero {
     background-color: #1a1a2e;
@@ -532,6 +540,12 @@ table.fun-facts tr:hover {
     padding: 2rem;
 }
 
+@media (max-width: 650px) {
+    #jobs-content {
+        padding:2rem 1rem;
+    }
+}
+
 /* For any sections on Jobs page */
 .jobs-section-container {
     margin-bottom: 2rem;
@@ -581,6 +595,40 @@ table.fun-facts tr:hover {
     padding: 0 2rem;
 }
 
+@media (max-width: 570px) {
+    #jobs-search-form {
+        padding: 0;
+    }
+
+    .jobs-hero {
+        padding: 3rem 1.2rem;
+    }
+}
+
+@media (max-width: 461px) {
+    /* necessary to allow search button click */
+    .hero-shape {
+        z-index: 0;
+    }
+
+    #jobs-search-form {
+        position: relative;
+        /* z-index: 999; */
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .search-wrapper {
+        width: 100%;
+    }
+
+    #jobs-search-form button {
+        width: 100%;
+        margin: 0;
+    }
+}
+
 .search-wrapper {
     flex: 1;
     position: relative;
@@ -591,7 +639,7 @@ table.fun-facts tr:hover {
     padding: 0.7rem 0.85rem 0.7rem 2.5rem;
     border: 1.5px solid #ccc;
     border-radius: 6px;
-    font-size: 0.95rem;
+    font-size: 1rem;
     color: #1a1a2e;
     text-overflow: ellipsis;
 }
@@ -681,3 +729,191 @@ table.fun-facts tr:hover {
     opacity: 1;
 }
 /* Clear search button styling end */
+
+
+
+/* ==========================================================
+   login.css — Log in page styles - Charlie
+   ========================================================== */
+
+#login-main {
+    min-height: 100vh;
+    background-color: #f5f5f5;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#login-section {
+    width: 35%;
+    min-width: 428px;
+    max-width: 600px;
+    margin: 0;
+    margin-top: -10vh;
+    padding-bottom: 0;
+}
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    padding: 2rem;
+    padding-top: 1rem;
+}
+
+/*  Field labels  */
+
+#login-form label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin-top: 0.75rem;
+    display: block;
+}
+
+/* Text inputs, email, tel, select, textarea  */
+
+#login-form input[type="text"],
+#login-form input[type="password"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.6rem 0.85rem;
+    border: 1.5px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: inherit;
+    color: #1a1a2e;
+    background: #fff;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    outline: none;
+    text-overflow: ellipsis;
+}
+
+/* "Focus ring" for select section brings emphasis to it */
+#login-form input[type="text"]:focus,
+#login-form input[type="password"]:focus {
+    border-color: #e94560;
+    box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.12);
+}
+
+#login-form textarea {
+    resize: vertical;
+    min-height: 110px;
+    line-height: 1.5;
+}
+
+/*  Hint text below inputs  */
+
+#login-form small {
+    font-size: 0.76rem;
+    color: #666;
+    display: block;
+}
+
+
+/*  Validation colours (only after user interaction)  */
+
+/* Red border when a field has content that fails validation */
+/* #login-form select:invalid:not(:focus) {
+    border-color: #e94560;
+} */
+
+/*  Submit button */
+
+#login-submit {
+    align-self: flex-start;
+    padding: 0.75rem 2rem;
+    color: #1a1a2e;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    background-color: #e94560;
+    color: #ffffff;
+    transition: transform 0.15s ease;
+}
+
+#login-submit:hover {
+    transform: translateY(-2px);
+}
+
+/*  Responsiveness - single-column on small screens  */
+
+@media (max-width: 768px) {
+    #login-main {
+        padding: 2rem 1rem 4rem;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        max-height: 80vh;
+    }
+
+    #login-submit {
+        align-self: center;
+        width: 80%;
+    }
+    
+    #login-section {
+        padding: 2rem;
+        width: 100%;
+        min-width: unset;
+        margin-top: unset;
+    }
+
+    #login-form {
+        padding: 0 2rem ;
+    }
+}
+
+.form-heading {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--navy, #1a1f36);
+    margin-bottom: 1.75rem;
+    padding-left: 1rem;
+    border-left: 4px solid #e8385a;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+}
+
+#login-error {
+    color: red;
+}
+
+.login-title-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.login-title-wrapper img {
+    pointer-events: none;
+    margin-top: 7px;
+    user-select: none;
+    -webkit-user-drag: none;
+    -moz-user-drag: none;
+    -webkit-tap-highlight-color: rgba(255,255,255,.1);
+}
+
+@media (max-width: 520px) {
+    #login-submit {
+        width: 100%;
+    }
+
+    #login-form {
+        padding: 0rem;
+    }
+
+    .login-title-wrapper {
+        flex-direction: column-reverse;
+        align-items: center;
+        gap: 2rem;
+    }
+
+
+}

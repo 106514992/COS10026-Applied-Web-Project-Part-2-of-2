@@ -31,7 +31,6 @@ $pageStyles = '
                 margin-top: 14rem;
                 width: 100%;
             }
-
         }
     </style>';
 
@@ -46,11 +45,13 @@ include "header.inc";
         <h1 id="jobs-page-title">Current Job Openings</h1>
         <p>Positions available with us today</p>
         <div>
-            <form id="jobs-search-form" action="jobs.php" method="GET">
+            <form id="jobs-search-form" action="jobs.php#jobs-content" method="GET">
                 <div class="search-wrapper">
                     <input type="text" name="search_query" value="<?php echo htmlspecialchars($_GET['search_query'] ?? '') ?>" placeholder="Search jobs..." aria-label="Search jobs">
                     <img class="search-icon" src="assets/searchIcon.svg" alt="Search Icon">
-                    <a href="jobs.php" class="clear-search-wrapper"><img class="clear-search-icon" title="Clear search" src="assets/crossIcon.svg" alt="Clear search"></a>
+                    <a href="jobs.php#jobs-page-title" class="clear-search-wrapper">
+                        <img class="clear-search-icon" title="Clear search" src="assets/crossIcon.svg" alt="Clear search">
+                    </a>
                 </div>
                 <button type="submit">Search</button>
             </form>
