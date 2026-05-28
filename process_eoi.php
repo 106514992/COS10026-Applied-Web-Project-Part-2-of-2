@@ -61,7 +61,7 @@
     if (!preg_match('/^[0-9]{4}$/', $postcode))
         $errors[] = 'Postcode must be exactly 4 digits.';
 
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL))
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) // php inbuilt email validation function checks for basic structure of an email address
         $errors[] = 'Please enter a valid email address.';
 
     if (!preg_match('/^[0-9]{8,12}$/', $phone))
