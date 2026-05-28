@@ -37,6 +37,13 @@ nav ul {
     gap: 2rem;
     margin: 0;
     padding: 0;
+    width: 100%;
+    text-align: center;
+
+}
+
+.align-right {
+  margin-left: auto;
 }
 
 nav ul li a {
@@ -204,6 +211,8 @@ footer a:hover {
         flex-direction: column;
         gap: 0.5rem;
     }
+
+
 }
 
 
@@ -916,4 +925,10 @@ table.fun-facts tr:hover {
     }
 
 
+}
+
+@media (max-width: 840px) {
+    .align-right {
+        margin-left: unset;
+    }
 }
