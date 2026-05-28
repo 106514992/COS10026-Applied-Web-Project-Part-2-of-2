@@ -81,9 +81,6 @@
 
     $conn = new mysqli($host, $username, $password, $dbname);
 
-    if ($conn->connect_error)
-        die('Database connection failed: ' . htmlspecialchars($conn->connect_error));
-
     // Insert the record directly using sanitised values
     $sql = "INSERT INTO `eoi`
         (job_reference, first_name, last_name, date_of_birth, gender,
@@ -103,6 +100,7 @@
     // Confirmation page
     // Everything went fine, so show a success page using the shared includes.
     $pageTitle = "Application Submitted - MediaFlare";
+    $pageAuthor = "Ivan Strmecki";
     $pageStyles = '<link rel="stylesheet" href="style/style.css" />';
 
     include "header.inc";
@@ -128,7 +126,7 @@
                 <tr><th>Email</th><td><?php echo htmlspecialchars($email); ?></td></tr>
                 <tr><th>Phone</th><td><?php echo htmlspecialchars($phone); ?></td></tr>
                 <tr><th>Skills</th><td><?php echo htmlspecialchars(str_replace(',', ', ', $skills_str)); ?></td></tr>
-                <?php if ($other_skills !== ''): ?>
+                <?php if ($other_skills !== ''): ?> <!-- because the other skills section is not necessary only show this row if they entered something in the other skills field -->
                 <tr><th>Other Skills</th><td><?php echo htmlspecialchars($other_skills); ?></td></tr>
                 <?php endif; ?>
                 <tr><th>Status</th><td>New</td></tr>
