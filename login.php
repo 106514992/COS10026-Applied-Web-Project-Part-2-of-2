@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $error = "Unable to connect to the system.";
         } else {
             $sanitised_username = mysqli_real_escape_string($conn, $login_username);
-            $result = mysqli_query($conn, "SELECT * FROM users WHERE username = '$sanitised_username'");
+            $result = mysqli_query($conn, "SELECT * FROM users WHERE BINARY username = '$sanitised_username'");
             if ($result) {
                 $account = mysqli_fetch_assoc($result);
 
