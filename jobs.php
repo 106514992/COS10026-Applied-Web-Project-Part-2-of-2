@@ -90,7 +90,8 @@ include "header.inc";
                 die("Connection failed: " . mysqli_connect_error());
             } else {
             
-                $search = htmlspecialchars(trim($_GET['search_query'] ?? ''));
+            // replace w/ prepared statement
+                $search = trim($_GET['search_query'] ?? '');
                 $sanitised_search = mysqli_real_escape_string($conn, $search);
 
 
@@ -114,12 +115,12 @@ include "header.inc";
                 // Display search results message
                 if ($search != '' && mysqli_num_rows($result) > 0) {
                     if (mysqli_num_rows($result) == 1) {
-                        echo "<p style='margin-bottom: 2rem;'><strong>Showing 1 search result for '<em>$search</em>'</strong></p>";
+                        echo "<p style='margin-bottom: 2rem;'><strong>Showing 1 search result for '<em>" . htmlspecialchars($search) . "</em>'</strong></p>";
                     } else {
-                    echo "<p style='margin-bottom: 2rem;'><strong>Showing " . mysqli_num_rows($result) . " search results for '<em>$search</em>'</strong></p>";
+                    echo "<p style='margin-bottom: 2rem;'><strong>Showing " . mysqli_num_rows($result) . " search results for '<em>" . htmlspecialchars($search) . "</em>'</strong></p>";
                     }
                 } elseif ($search != '' && mysqli_num_rows($result) == 0) {
-                    echo "<p style='margin-bottom: 2rem;'><strong>No search results found for '<em>$search</em>'</strong></p>";
+                    echo "<p style='margin-bottom: 2rem;'><strong>No search results found for '<em>" . htmlspecialchars($search) . "</em>'</strong></p>";
                 } elseif ($search == '' && mysqli_num_rows($result) > 0) {
                     echo "<p style='margin-bottom: 2rem;'><strong>All job listings</strong></p>";
                 }
@@ -186,7 +187,7 @@ include "header.inc";
                     }
                 } else {
                     if ($search != '') {
-                        echo "<p>No job listings found matching your search for '<strong>$search</strong>'.</p>";
+                        echo "<p>No job listings found matching your search for '<strong>" . htmlspecialchars($search) . "</strong>'.</p>";
                     } else {
                         echo "<p>No job listings available at the moment. Please check back later.</p>";
                     }
