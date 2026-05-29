@@ -1,9 +1,10 @@
 <?php
+session_start();
+
 $pageTitle = "Jobs - Creative Digital Media Agency";
 $author = "Charlie Payne";
 $pageStyles = '';
 
-session_start();
 $login_username = '';
 $error = '';
 

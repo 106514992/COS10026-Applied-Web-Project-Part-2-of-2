@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 // Connect to the database
 require_once 'settings.php';

@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 $pageTitle = "Apply - Creative Digital Media Agency";
 $author = "Ivan Strmecki";
 $pageStyles = '
