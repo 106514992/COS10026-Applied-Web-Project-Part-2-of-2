@@ -57,76 +57,85 @@ include "header.inc";
             </ul>
         </section>
 
-        <!-- Team Members - Definition List -->
-        <section class="section-container">
-            <h2 class="section-title">Team Members &amp; Contributions</h2>
-            <dl class="member-list">
+       <!-- Team Members - Dynamic Database Output -->
+<section class="section-container">
+    <h2 class="section-title">Team Members &amp; Contributions</h2>
 
-                <dt>
-                    Zobair Mirranay<br>
-                    <!-- Inline CSS -->
-                    <p class="student-id"
-                        style="display:inline-block; background:#1a1a2e; color:#fff; font-family:monospace; font-size:0.85rem; padding:2px 8px; border-radius:4px;">
-                        Student ID: [103979488]</p>
-                </dt>
-                <dd>
-                    <strong>Page:</strong> About (about.html)<br>
-                    <strong>Role:</strong> Team lead, page structure, CSS styling<br>
-                    <blockquote class="quote-block">
-                        <p class="original">"دانش نور است و نادانی تاریکی."</p>
-                        <p class="translation">English: "Knowledge is light and ignorance is darkness." — Afghan proverb
-                        </p>
-                    </blockquote>
-                </dd>
+    <dl class="member-list">
 
-                <dt>
-                    Ivan Strmecki<br>
-                    <p class="student-id"
-                        style="display:inline-block; background:#1a1a2e; color:#fff; font-family:monospace; font-size:0.85rem; padding:2px 8px; border-radius:4px;">
-                        Student ID: [104548449]</p>
-                </dt>
-                <dd>
-                    <strong>Page:</strong> Apply (apply.html)<br>
-                    <strong>Role:</strong> Form design, HTML5 validation, Flexbox layout<br>
-                    <blockquote class="quote-block">
-                        <p class="original">"Tko uči, taj ne griješi uzalud."</p>
-                        <p class="translation">English: "He who learns does not err in vain." — Croatian proverb</p>
-                    </blockquote>
-                </dd>
+        <?php
+        require_once("settings.php");
 
-                <dt>
-                    Sam O'Connor<br>
-                    <p class="student-id"
-                        style="display:inline-block; background:#1a1a2e; color:#fff; font-family:monospace; font-size:0.85rem; padding:2px 8px; border-radius:4px;">
-                        Student ID: [104605182]</p>
-                </dt>
-                <dd>
-                    <strong>Page:</strong> Home (index.html) &amp; Jira Management<br>
-                    <strong>Role:</strong> Homepage design, project management<br>
-                    <blockquote class="quote-block">
-                        <p class="original">"Níl aon tinteán mar do thinteán féin."</p>
-                        <p class="translation">English: "There's no fireplace like your own fireplace." — Irish proverb
-                        </p>
-                    </blockquote>
-                </dd>
+        $conn = mysqli_connect($host, $user, $pwd, $sql_db);
 
-                <dt>
-                    Charlie Payne<br>
-                    <p class="student-id"
-                        style="display:inline-block; background:#1a1a2e; color:#fff; font-family:monospace; font-size:0.85rem; padding:2px 8px; border-radius:4px;">
-                        Student ID: [106514992]</p>
-                </dt>
-                <dd>
-                    <strong>Page:</strong> Jobs (jobs.html)<br>
-                    <strong>Role:</strong> Job listings, semantic HTML structure<br>
-                    <blockquote class="quote-block">
-                        <p class="original">"Le travail, c'est la liberté."</p>
-                        <p class="translation">English: "Work is freedom." — French saying</p>
-                    </blockquote>
-                </dd>
+        if (!$conn) {
+            echo "<p>Database connection failed.</p>";
+        } else {
 
-            </dl>
-        </section>
+            $query = "SELECT * FROM about_contributions";
+
+            $result = mysqli_query($conn, $query);
+
+            if ($result) {
+
+                while ($row = mysqli_fetch_assoc($result)) {
+
+                    echo "<dt>";
+                    echo $row['member_name'] . "<br>";
+
+                    echo "<p class='student-id'
+                    style='display:inline-block; background:#1a1a2e;
+                    color:#fff; font-family:monospace;
+                    font-size:0.85rem; padding:2px 8px;
+                    border-radius:4px;'>";
+
+                    echo "Student ID: [" . $row['student_id'] . "]";
+                    echo "</p>";
+
+                    echo "</dt>";
+
+                    echo "<dd>";
+
+                    echo "<strong>Page:</strong> "
+                        . $row['assigned_page'] . "<br>";
+
+                    echo "<strong>Project 1 Role:</strong> "
+                        . $row['project1_role'] . "<br>";
+
+                    echo "<strong>Project 2 Role:</strong> "
+                        . $row['project2_role'] . "<br>";
+
+                    echo "<blockquote class='quote-block'>";
+
+                    echo "<p class='original'>\""
+                        . $row['quote_original'] . "\"</p>";
+
+                    echo "<p class='translation'>English: \""
+                        . $row['quote_translation'] . "\"</p>";
+
+                    echo "</blockquote>";
+
+                    echo "<p><strong>Dream Job:</strong> "
+                        . $row['dream_job'] . "</p>";
+
+                    echo "<p><strong>Coding Snack:</strong> "
+                        . $row['coding_snack'] . "</p>";
+
+                    echo "<p><strong>Hometown:</strong> "
+                        . $row['hometown'] . "</p>";
+
+                    echo "</dd>";
+                }
+
+                mysqli_free_result($result);
+            }
+
+            mysqli_close($conn);
+        }
+        ?>
+
+    </dl>
+</section>
         <!-- Group Photo -->
         <section class="section-container">
             <h2 class="section-title">Group Photo</h2>
