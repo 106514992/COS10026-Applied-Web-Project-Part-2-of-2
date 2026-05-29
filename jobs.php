@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 $pageTitle = "Jobs - Creative Digital Media Agency";
 $author = "Charlie Payne";
 $pageStyles = '

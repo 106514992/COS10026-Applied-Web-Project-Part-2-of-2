@@ -8,6 +8,14 @@
         <li><a href="apply.php">Apply</a></li>
         <li><a href="about.php">About</a></li>
         <li class="align-right"><a href="manage.php">Manage</a></li>
-        <li><a href="logout.php">Log out</a></li>
+        <li><a href="logout.php">
+        <?php
+        if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+            echo 'Log in';
+        } else {
+            echo 'Log out';
+        }
+        ?>
+        </a></li>
     </ul>
 </nav>

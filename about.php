@@ -1,4 +1,5 @@
-  <?php
+<?php
+session_start();
 $pageTitle = "About - Creative Digital Media Agency";
 
 $pageStyles = '
