@@ -46,7 +46,7 @@ include "header.inc";
 
         <!-- The form posts to process_eoi.php which handles all the validation and DB insert.
              No client-side validation — everything is done server-side. -->
-        <form id="apply-form" action="process_eoi.php" method="post">
+        <form id="apply-form" action="process_eoi.php" method="post" novalidate>
 
             <!-- Job reference number  -->
             <fieldset id="fieldset-job-ref">

@@ -150,7 +150,7 @@ include "nav.inc";
     <h1>Manage Expressions of Interest</h1>
 
     <p>
-        Logged in as <strong><?php echo clean_output($_SESSION['manager_username']); ?></strong>
+        Logged in as <strong><?php echo clean_output($_SESSION['username'] ?? 'Manager'); ?></strong>
         | <a href="logout.php">Logout</a>
     </p>
 
