@@ -11,8 +11,8 @@
     ?>
     <title><?php echo $pageTitle; ?></title>
 
-    <link rel="stylesheet" href="assets/style.css" />
-    <link rel="icon" href="assets/favicon.ico">
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="icon" href="favicon.ico">
 
     <?php
     if (isset($pageStyles)) {

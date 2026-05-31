@@ -50,9 +50,9 @@ include "header.inc";
             <form id="jobs-search-form" action="jobs.php#jobs-content" method="GET">
                 <div class="search-wrapper">
                     <input type="text" name="search_query" value="<?php echo htmlspecialchars($_GET['search_query'] ?? '') ?>" placeholder="Search jobs..." aria-label="Search jobs">
-                    <img class="search-icon" src="assets/searchIcon.svg" alt="Search Icon">
+                    <img class="search-icon" src="images/searchIcon.svg" alt="Search Icon">
                     <a href="jobs.php#jobs-page-title" class="clear-search-wrapper">
-                        <img class="clear-search-icon" title="Clear search" src="assets/crossIcon.svg" alt="Clear search">
+                        <img class="clear-search-icon" title="Clear search" src="images/crossIcon.svg" alt="Clear search">
                     </a>
                 </div>
                 <button type="submit">Search</button>
