@@ -22,12 +22,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!$conn) {
             $error = "Unable to connect to the system.";
         } else {
-            $sanitised_username = mysqli_real_escape_string($conn, $login_username);
-            $result = mysqli_query($conn, "SELECT * FROM users WHERE BINARY username = '$sanitised_username'");
+            $stmt = mysqli_prepare($conn, "SELECT * FROM users WHERE BINARY username = ?");
+            mysqli_stmt_bind_param($stmt, "s", $login_username);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
             if ($result) {
                 $account = mysqli_fetch_assoc($result);
 
-                if ($account && (password_verify($login_password, $account['password']) == true)) {
+                if ($account && password_verify($login_password, $account['password'])) {
                     session_regenerate_id(true);
                     $_SESSION['logged_in'] = true;
                     $_SESSION['username'] = $account['username'];
@@ -38,13 +40,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $error = "Invalid username or password.";
                 }
 
-                mysqli_close($conn);
             } else {
                 $error = "Could not verify login (Failed to connect to database)";
             }
         }
     }
 }
+mysqli_close($conn);
 
 include "header.inc";
 ?>
