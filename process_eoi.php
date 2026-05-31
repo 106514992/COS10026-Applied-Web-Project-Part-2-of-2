@@ -140,7 +140,7 @@ $conn->close();
 // Everything went fine, so show a success page using the shared includes.
 $pageTitle = "Application Submitted - MediaFlare";
 $pageAuthor = "Ivan Strmecki";
-$pageStyles = '<link rel="stylesheet" href="style/style.css" />';
+$pageStyles = '<link rel="stylesheet" href="styles/eoi_style.css" />';
 
 include "header.inc";
 ?>

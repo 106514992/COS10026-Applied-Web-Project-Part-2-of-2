@@ -4,7 +4,6 @@ session_start();
 $pageTitle = "Apply - Creative Digital Media Agency";
 $author = "Ivan Strmecki";
 $pageStyles = '
-<link rel="stylesheet" href="assets/apply.css" />
 <style>
     /* Pink left-border heading above the form */
     .form-heading {

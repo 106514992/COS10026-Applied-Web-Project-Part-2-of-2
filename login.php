@@ -39,14 +39,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 } else {
                     $error = "Invalid username or password.";
                 }
-
             } else {
                 $error = "Could not verify login (Failed to connect to database)";
             }
+            mysqli_close($conn);
         }
     }
 }
-mysqli_close($conn);
 
 include "header.inc";
 ?>
@@ -59,7 +58,7 @@ include "header.inc";
             <!-- Form heading with inline CSS styling -->
             <div class="login-title-wrapper">
                 <h1 class="form-heading" style="margin-top: 0.25rem;">Sign in</h1>
-                <img src="assets/mediaflare_logo.svg" alt="MediaFlare logo" height="30" draggable="false"/>
+                <img src="images/mediaflare_logo.svg" alt="MediaFlare logo" height="30" draggable="false"/>
             </div>
 
             <form id="login-form" action="" method="post" novalidate>

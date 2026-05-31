@@ -140,7 +140,7 @@ include "header.inc";
         <section class="section-container">
             <h2 class="section-title">Group Photo</h2>
             <figure class="group-photo" style="max-width: 600px; margin: 0 auto; text-align: center;">
-                <img src="assets/Group.photo.jpeg" alt="Group photo of all four MediaFlare team members" width="580" />
+                <img src="images/Group.photo.jpeg" alt="Group photo of all four MediaFlare team members" width="580" />
                 <figcaption>The MediaFlare team — Thursday 2:30pm, Swinburne University, Semester 1 2026</figcaption>
             </figure>
         </section>
