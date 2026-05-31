@@ -30,8 +30,7 @@ A creative agency providing web design, branding, and digital content services, 
 3. Import the database:
    - Select the mediaflare database in phpMyAdmin
    - Click **Import**
-   - Choose the `mediaflare.sql` file from the project root
-   - Click **Go**
+   -  Import the tables in `\sql`
 
 4. Run the site:
    - Make sure **Apache** and **MySQL** are running in XAMPP
@@ -46,6 +45,6 @@ A creative agency providing web design, branding, and digital content services, 
 ## Updating the Database
 When someone makes changes to the database schema or data:
 1. Export from phpMyAdmin: **Export > Quick > Format: SQL > Go**
-2. Replace the `mediaflare.sql` file in the repo
+2. Replace/add the relevant files in the `\sql` folder in the repository
 3. Commit and push
 4. Others pull and re-import manually via phpMyAdmin
