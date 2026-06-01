@@ -51,7 +51,11 @@ include "header.inc";
                 <div class="search-wrapper">
                     <input type="text" name="search_query" value="<?php echo htmlspecialchars($_GET['search_query'] ?? '') ?>" placeholder="Search jobs..." aria-label="Search jobs">
                     <img class="search-icon" src="images/searchIcon.svg" alt="Search Icon">
-                    <a href="jobs.php#jobs-page-title" class="clear-search-wrapper">
+                    <a<?php
+                    if (trim($_GET['search_query'] ?? '') !== '') {
+                        echo ' href="jobs.php#jobs-page-title"';
+                    }
+                    ?> class="clear-search-wrapper">
                         <img class="clear-search-icon" title="Clear search" src="images/crossIcon.svg" alt="Clear search">
                     </a>
                 </div>
