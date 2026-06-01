@@ -1,0 +1,236 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Jun 01, 2026 at 12:59 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.0.30
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `mediaflare`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `about_contributions`
+--
+
+CREATE TABLE `about_contributions` (
+  `id` int(11) NOT NULL,
+  `member_name` varchar(100) NOT NULL,
+  `student_id` varchar(20) NOT NULL,
+  `assigned_page` varchar(100) NOT NULL,
+  `project1_role` text NOT NULL,
+  `project2_role` text NOT NULL,
+  `quote_original` text NOT NULL,
+  `quote_translation` text NOT NULL,
+  `dream_job` varchar(100) NOT NULL,
+  `coding_snack` varchar(100) NOT NULL,
+  `hometown` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `eoi`
+--
+
+CREATE TABLE `eoi` (
+  `EOInumber` int(11) NOT NULL,
+  `job_reference` varchar(5) NOT NULL,
+  `first_name` varchar(20) NOT NULL,
+  `last_name` varchar(20) NOT NULL,
+  `date_of_birth` varchar(10) NOT NULL,
+  `gender` enum('male','female','prefer-not-to-say') NOT NULL,
+  `street_address` varchar(40) NOT NULL,
+  `suburb` varchar(40) NOT NULL,
+  `state` enum('VIC','NSW','QLD','NT','WA','SA','TAS','ACT') NOT NULL,
+  `postcode` char(4) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `phone` varchar(12) NOT NULL,
+  `skills` text NOT NULL,
+  `other_skills` text DEFAULT NULL,
+  `status` enum('New','Current','Final') NOT NULL DEFAULT 'New'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `eoi`
+--
+
+INSERT INTO `eoi` (`EOInumber`, `job_reference`, `first_name`, `last_name`, `date_of_birth`, `gender`, `street_address`, `suburb`, `state`, `postcode`, `email`, `phone`, `skills`, `other_skills`, `status`) VALUES
+(1, 'asd12', 'asd', 'asd', '02/03/2000', 'male', 'asdf23', '23', 'NT', '3422', 'awef@gma.com', '0412882933', 'html-css,ui-ux-design,branding', 'fadsafafe', 'New'),
+(2, 'asd12', 'asd', 'asd', '02/03/2000', 'male', 'asdf23', '23', 'NT', '3422', 'awef@gma.com', '0412882933', 'html-css,ui-ux-design,branding', 'fadsafafe', 'New'),
+(3, 'abc12', 'lkjasdf', 'lkjjadsf', '02/03/2001', 'female', '123123', '123123', 'WA', '1232', 'kjh2@gljka.com', '0492785055', 'graphic-design,branding', 'WFG3', 'New');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jobs`
+--
+
+CREATE TABLE `jobs` (
+  `id` int(11) NOT NULL,
+  `reference_number` varchar(10) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `description` text NOT NULL,
+  `salary_min` int(11) NOT NULL,
+  `salary_max` int(11) NOT NULL,
+  `reports_to` varchar(100) NOT NULL,
+  `reporting_line` text NOT NULL,
+  `key_responsibilities` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`key_responsibilities`)),
+  `requirements_essential` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`requirements_essential`)),
+  `requirements_preferable` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`requirements_preferable`)),
+  `job_area_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `jobs`
+--
+
+INSERT INTO `jobs` (`id`, `reference_number`, `title`, `description`, `salary_min`, `salary_max`, `reports_to`, `reporting_line`, `key_responsibilities`, `requirements_essential`, `requirements_preferable`, `job_area_id`) VALUES
+(1, 'SD123', 'Software Developer', 'We are seeking a Software Developer to join our eight-person product engineering team, building and maintaining MediaFlare\'s core content delivery platform. You will work in two-week agile sprints, contributing to a React and Node.js web application that serves over 50,000 daily active users. This is a hands-on development role with a clear pathway to Senior Developer within two to three years.', 90000, 100000, 'Senior Development Manager', 'This position reports directly to the Senior Development Manager, within the Technology division, under the Chief Technology Officer and Managing Director. This role has no direct reports.', '[\"Build and ship new product features in React (TypeScript) and Node.js across each two-week sprint cycle\", \"Write and maintain unit and integration tests using Jest, targeting a minimum 80% code coverage threshold\", \"Participate in code reviews via GitHub pull requests, providing and actioning constructive feedback\", \"Diagnose and resolve production bugs using Datadog logs and error traces, with a target resolution time under four hours for P1 issues\", \"Collaborate with UX designers in Figma to translate wireframes into accessible, responsive front-end components\", \"Contribute to and maintain internal API documentation using OpenAPI/Swagger\"]', '[\"Bachelor\'s degree in Software Engineering, Computer Science, or a related discipline\", \"Minimum two years of professional experience writing JavaScript or TypeScript in a production environment\", \"Demonstrated ability to build and consume RESTful APIs\", \"Experience working in an agile or scrum team with tools such as Jira or Linear\", \"Solid understanding of version control workflows using Git (branching, merging, pull requests)\"]', '[\"Hands-on experience with React and a Node.js backend framework such as Express or Fastify\", \"Familiarity with PostgreSQL or another relational database, including writing and optimising SQL queries\", \"Exposure to CI/CD pipelines (GitHub Actions, CircleCI, or similar)\", \"Understanding of web accessibility standards (WCAG 2.1 AA)\"]', 3),
+(2, 'IT456', 'IT Support Technician', 'MediaFlare\'s IT Support Technician is the first point of contact for approximately 120 staff across our Melbourne CBD headquarters and remote workforce. You will triage and resolve hardware, software, and connectivity issues through our Freshservice helpdesk, maintaining a service level agreement of four-hour response and next-business-day resolution for standard requests. This role suits a detail-oriented technician who takes pride in clear communication and a tidy, well-documented environment.', 60000, 75000, 'IT Operations Manager', 'This position reports directly to the IT Operations Manager, within the Technology division, under the Head of Technology and Managing Director. This role has no direct reports.', '[\"Respond to and resolve helpdesk tickets in Freshservice within agreed SLA timeframes, handling an average queue of 20 to 30 tickets per week\", \"Provision and decommission user accounts, devices, and software licences in Microsoft Entra ID (Azure AD) and Microsoft 365 (Outlook, Teams, SharePoint)\", \"Diagnose and repair hardware faults on Windows 11 laptops and desktops, coordinating warranty replacements with Dell and Lenovo vendor portals where required\", \"Configure and maintain network access including VLAN assignments, Wi-Fi onboarding, and VPN client setup (Cisco AnyConnect)\", \"Image and deploy new workstations using Microsoft Intune, ensuring devices meet the company\'s endpoint security baseline before handover\", \"Maintain accurate asset records in the IT asset register and update knowledge base articles in Confluence after each novel resolution\"]', '[\"Diploma of Information Technology or equivalent vocational qualification, or demonstrated equivalent industry experience\", \"Minimum one year of hands-on experience supporting Windows 10/11 end-user environments in a professional setting\", \"Working knowledge of Microsoft 365 administration including user, licence, and group management\", \"Familiarity with TCP/IP networking fundamentals: DHCP, DNS, subnets, and basic switch/router configuration\", \"Strong written and verbal communication skills, with the ability to explain technical steps clearly to non-technical staff\"]', '[\"CompTIA A+ or Network+ certification\", \"Experience administering Microsoft Entra ID (Azure Active Directory) and Intune MDM\", \"Exposure to ITIL service management practices\", \"Previous experience in a corporate IT environment with 50 or more users\"]', 4),
+(3, 'CAS842', 'Senior Cloud Architecture Specialist', 'MediaFlare is expanding its cloud footprint and requires a Senior Cloud Architecture Specialist to lead the design, governance, and continuous optimisation of our hybrid AWS and Azure environments. You will own the cloud architecture roadmap, partnering directly with product and engineering teams to deliver scalable, secure, and cost-efficient infrastructure. This is a senior individual-contributor role with responsibility for mentoring two mid-level cloud engineers.', 120000, 160000, 'Managing Director', 'This position reports directly to the Managing Director. The role carries direct oversight of two mid-level Cloud Engineers.', '[\"Design and document cloud architecture solutions for new product initiatives, producing architecture decision records (ADRs) and presenting recommendations to the Managing Director and engineering leads\", \"Own the AWS and Azure cost optimisation programme, identifying and implementing savings through Reserved Instances, rightsizing, and storage tiering — with a target of 15% annual reduction in cloud spend\", \"Author and maintain Infrastructure as Code (IaC) using Terraform and Bicep, enforcing standards through policy-as-code (Open Policy Agent) in the CI/CD pipeline\", \"Lead the quarterly disaster recovery and business continuity testing process across AWS (ap-southeast-2) and Azure (australiaeast) regions, documenting RTO and RPO outcomes\", \"Conduct security posture reviews using AWS Security Hub and Microsoft Defender for Cloud, remediating critical and high findings within five business days\", \"Mentor two mid-level cloud engineers through structured fortnightly one-on-ones, code reviews, and pairing sessions on complex infrastructure tasks\"]', '[\"AWS Certified Solutions Architect – Professional (SAP-C02)\", \"Microsoft Certified: Azure Solutions Architect Expert (AZ-305)\", \"Minimum seven years of experience in cloud infrastructure roles, with at least three years designing production-grade AWS and Azure environments\", \"Proficiency in Terraform for multi-cloud IaC, including remote state management and module design\", \"Demonstrated experience conducting cloud security reviews and remediating findings against CIS Benchmarks or equivalent frameworks\", \"CompTIA Security+ or equivalent security qualification\"]', '[\"AWS Certified DevOps Engineer – Professional or Microsoft Certified: DevOps Engineer Expert (AZ-400)\", \"Experience with FinOps practices and tools such as AWS Cost Explorer, Azure Cost Management, or Apptio Cloudability\", \"Familiarity with container orchestration on Amazon EKS or Azure AKS\", \"Previous experience in a regulated industry (financial services, healthcare) with exposure to compliance frameworks such as ISO 27001 or SOC 2\"]', 3),
+(7, 'AB123', 'DevOps Engineer', 'We are looking for a DevOps Engineer to own and evolve the CI/CD infrastructure that ships MediaFlare\'s platform to production dozens of times per week. Working alongside three software developers and one cloud specialist, you will build reliable deployment pipelines, maintain observability tooling, and drive improvements to our engineering velocity. This role sits at the intersection of software engineering and infrastructure and suits someone equally comfortable writing code and configuring cloud services.', 95000, 115000, 'Senior Development Manager', 'This position reports directly to the Senior Development Manager, within the Technology division, under the Chief Technology Officer and Managing Director. This role has no direct reports.', '[\"Design, build, and maintain GitHub Actions CI/CD pipelines that run automated tests, security scans (Snyk, Trivy), and container image builds on every pull request\", \"Manage container workloads on Amazon EKS, including cluster upgrades, Helm chart authoring, and horizontal pod autoscaling configuration\", \"Maintain and improve the observability stack: Prometheus metrics, Grafana dashboards, and PagerDuty alert routing, ensuring on-call engineers have actionable runbooks for every alert\", \"Implement and enforce secrets management using AWS Secrets Manager and HashiCorp Vault, auditing access policies quarterly\", \"Conduct blameless post-incident reviews after P1 outages, producing written reports with root cause analysis and preventive action items within 48 hours\", \"Evaluate and introduce tooling improvements — for example, migrating build caching strategies or adopting new Terraform provider versions — with a proof-of-concept and measured rollout plan\"]', '[\"Minimum three years of professional experience in a DevOps, platform engineering, or site reliability engineering role\", \"Hands-on experience writing and maintaining CI/CD pipelines in GitHub Actions, GitLab CI, or Jenkins\", \"Practical knowledge of containerisation with Docker and orchestration with Kubernetes (EKS, AKS, or GKE)\", \"Proficiency in at least one scripting or programming language used for automation: Python, Bash, or Go\", \"Experience managing cloud infrastructure with Terraform in AWS or Azure\"]', '[\"AWS Certified DevOps Engineer – Professional or Certified Kubernetes Administrator (CKA)\", \"Experience with GitOps workflows using ArgoCD or Flux\", \"Familiarity with service mesh technologies such as Istio or Linkerd\", \"Exposure to platform engineering concepts including internal developer portals (Backstage or similar)\"]', 3),
+(8, 'IT789', 'IT Systems Administrator', 'MediaFlare is looking for an IT Systems Administrator to manage and maintain the internal server infrastructure, cloud services, and endpoint management platforms that keep our 120-person workforce running. Working closely with the IT Operations Manager, you will take ownership of system uptime, security patching, and identity management across our hybrid environment. This role suits a proactive technician who enjoys solving complex infrastructure problems and documenting solutions for the wider team.', 75000, 90000, 'IT Operations Manager', 'This position reports directly to the IT Operations Manager, within the Technology division, under the Head of Technology and Managing Director. This role has no direct reports.', '[\"Administer and maintain Windows Server 2019/2022 environments including Active Directory, Group Policy, DNS, and DHCP across on-premises and hybrid Azure AD configurations\",\"Monitor system health and performance using SolarWinds and Azure Monitor, responding to alerts and resolving incidents within agreed SLA timeframes\",\"Manage endpoint security and compliance using Microsoft Intune, ensuring all devices meet the company baseline before deployment and throughout their lifecycle\",\"Plan and execute monthly patch management cycles across servers and workstations using Windows Server Update Services and Microsoft Endpoint Configuration Manager\",\"Maintain and test backup and disaster recovery procedures using Veeam Backup, ensuring recovery time objectives are met for all critical systems\",\"Administer Microsoft 365 services including Exchange Online, SharePoint, and Teams, handling escalations from the Level 1 IT Support Technician\"]', '[\"Bachelor degree or Diploma in Information Technology, Systems Administration, or a related discipline, or demonstrated equivalent experience\",\"Minimum two years of hands-on experience administering Windows Server environments in a professional setting\",\"Proficiency in Microsoft 365 administration including Exchange Online, SharePoint, and Teams\",\"Solid understanding of networking fundamentals including DNS, DHCP, VLANs, and firewall rule management\",\"Experience with endpoint management platforms such as Microsoft Intune or SCCM\"]', '[\"Microsoft Certified: Azure Administrator Associate (AZ-104) or equivalent certification\",\"Experience with virtualisation platforms such as VMware vSphere or Microsoft Hyper-V\",\"Familiarity with ITIL service management practices and change control processes\",\"Exposure to PowerShell scripting for automation of routine administrative tasks\"]', 4),
+(9, 'WD001', 'Web Designer', 'MediaFlare is looking for a creative Web Designer to craft visually compelling, user-centred digital experiences for our clients across a range of industries. You will work closely with our front-end development and digital content teams to translate brand briefs into polished, accessible web interfaces. This role suits a designer with a strong eye for detail who is comfortable working in an agile, client-facing environment.', 65000, 80000, 'Creative Director', 'This position reports directly to the Creative Director, within the Creative division, under the Managing Director. This role has no direct reports.', '[\"Design responsive website layouts and UI components using Figma, ensuring designs meet WCAG 2.1 AA accessibility standards\",\"Collaborate with front-end developers to ensure accurate implementation of designs, providing annotated specs and attending handover sessions\",\"Develop and maintain client brand style guides including typography, colour palettes, and component libraries\",\"Participate in client discovery workshops and present design concepts, incorporating feedback across multiple revision rounds\",\"Conduct usability reviews of existing client websites, identifying pain points and proposing evidence-based improvements\",\"Stay current with web design trends, emerging tools, and accessibility best practices, sharing insights with the wider creative team\"]', '[\"Bachelor degree or Diploma in Graphic Design, Web Design, Visual Communication, or a related discipline\",\"Minimum two years of professional experience designing websites or digital products\",\"Proficiency in Figma for UI design and prototyping\",\"Strong understanding of responsive design principles and mobile-first layouts\",\"Demonstrated portfolio of web design work across a range of industries and device types\"]', '[\"Experience designing within an agile or sprint-based workflow\",\"Familiarity with HTML and CSS sufficient to communicate effectively with front-end developers\",\"Knowledge of web accessibility standards (WCAG 2.1) and inclusive design practices\",\"Experience working directly with clients in a agency environment\"]', 1),
+(10, 'DC001', 'Digital Content Producer', 'MediaFlare is seeking a Digital Content Producer to plan, create, and distribute engaging content across our clients\' owned and earned digital channels. Working within the Digital Content team, you will manage content calendars, produce written and multimedia assets, and analyse performance data to continuously improve content outcomes. This role suits a creative self-starter who can juggle multiple client accounts and thrives in a fast-paced agency environment.', 60000, 75000, 'Head of Digital Content', 'This position reports directly to the Head of Digital Content, within the Creative division, under the Managing Director. This role has no direct reports.', '[\"Plan and manage monthly content calendars for up to four client accounts, coordinating approvals with clients and internal stakeholders ahead of publishing deadlines\",\"Produce written content including blog posts, social media copy, email newsletters, and website landing pages tailored to each client brand voice\",\"Shoot and edit short-form video and image assets for use across Instagram, LinkedIn, and TikTok using Adobe Premiere Pro and Lightroom\",\"Monitor and report on content performance using Google Analytics and native platform insights, providing monthly reports with actionable recommendations\",\"Collaborate with the Web Design team to brief and review visual assets, ensuring brand consistency across all touchpoints\",\"Research industry trends and competitor content strategies to identify new content opportunities for clients\"]', '[\"Bachelor degree in Communications, Journalism, Marketing, Media Studies, or a related discipline\",\"Minimum two years of experience producing digital content in an agency or in-house marketing environment\",\"Demonstrated ability to write compelling copy across multiple formats and brand voices\",\"Experience managing social media accounts and content calendars for multiple clients or brands\",\"Proficiency in Adobe Creative Suite including Premiere Pro and Lightroom for basic video and photo editing\"]', '[\"Experience with email marketing platforms such as Mailchimp or Klaviyo\",\"Familiarity with SEO principles and experience optimising content for search\",\"Knowledge of paid social media advertising on Meta, LinkedIn, or TikTok\",\"Experience producing content for B2B audiences\"]', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `job_areas`
+--
+
+CREATE TABLE `job_areas` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `focus` varchar(300) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `job_areas`
+--
+
+INSERT INTO `job_areas` (`id`, `name`, `focus`) VALUES
+(1, 'Web Design', 'User-friendly layouts and branding'),
+(2, 'Digital Content', 'Creative campaigns and media production'),
+(3, 'Engineering & DevOps', 'Software development and DevOps'),
+(4, 'IT & Infrastructure', 'Support, systems, and cloud');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`) VALUES
+(1, 'admin', '$2y$10$frR094zsGCM9qiDV5/nNAOt7322gcMnYiphGx.xrzKqsGyB9gf7Ve');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `about_contributions`
+--
+ALTER TABLE `about_contributions`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `eoi`
+--
+ALTER TABLE `eoi`
+  ADD PRIMARY KEY (`EOInumber`);
+
+--
+-- Indexes for table `jobs`
+--
+ALTER TABLE `jobs`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `reference_number` (`reference_number`),
+  ADD KEY `job_area_id` (`job_area_id`);
+
+--
+-- Indexes for table `job_areas`
+--
+ALTER TABLE `job_areas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `about_contributions`
+--
+ALTER TABLE `about_contributions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `eoi`
+--
+ALTER TABLE `eoi`
+  MODIFY `EOInumber` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `jobs`
+--
+ALTER TABLE `jobs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `job_areas`
+--
+ALTER TABLE `job_areas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `jobs`
+--
+ALTER TABLE `jobs`
+  ADD CONSTRAINT `jobs_ibfk_1` FOREIGN KEY (`job_area_id`) REFERENCES `job_areas` (`id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
