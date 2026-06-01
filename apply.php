@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$pageTitle = "Apply - Creative Digital Media Agency";
+$pageTitle = "Apply - MediaFlare";
 $author = "Ivan Strmecki";
 $pageStyles = '
 <style>

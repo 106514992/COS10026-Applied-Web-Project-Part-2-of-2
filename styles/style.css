@@ -38,7 +38,6 @@ nav ul {
     margin: 0;
     padding: 0;
     width: 100%;
-    text-align: center;
 
 }
 
@@ -509,7 +508,7 @@ table.fun-facts tr:hover {
     }
 }
 
-#jobs-page-title {
+#jobs-page-title, #home-page-title {
     opacity: 0;
     transform: translateY(30px);
     animation: titleReveal 0.9s cubic-bezier(0.2, 1, 0.3, 1) forwards;
@@ -614,6 +613,11 @@ table.fun-facts tr:hover {
     .jobs-hero {
         padding: 3rem 1.2rem;
     }
+    
+    nav ul {
+        text-align: center;
+    }
+
 }
 
 @media (max-width: 461px) {
@@ -932,5 +936,158 @@ table.fun-facts tr:hover {
 @media (max-width: 840px) {
     .align-right {
         margin-left: unset;
+    }
+}
+
+/* --------------------------------------------------- */
+/* ---------------- HOME PAGE STYLING ----------------*/
+/* --------------------------------------------------- */
+
+.home-hero-image {
+    display: block;
+    margin: 1rem auto 0;
+    width: 220px;
+    max-width: 70%;
+    position: relative;
+}
+
+/* Index Page */
+
+.home-hero {
+    background: linear-gradient(135deg, #1a1a2e 0%, #11142d 100%);
+}
+
+#home-main {
+    max-width: 1100px;
+    margin: auto;
+}
+
+.home-intro {
+    display: block;
+}
+
+.home-intro-text {
+    max-width: 800px;
+}
+
+.home-intro-text p {
+    color: #444;
+    margin-bottom: 1rem;
+}
+
+.home-search-form {
+    margin-top: 0.5rem;
+}
+
+.home-search-row {
+    display: flex;
+    gap: 1rem;
+    align-items: end;
+    flex-wrap: wrap;
+}
+
+.home-search-field {
+    flex: 1 1;
+}
+
+.home-search-field label {
+    display: block;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin-bottom: 0.5rem;
+}
+
+.home-search-field input[type="text"] {
+    width: 100%;
+    padding: 0.7rem 0.85rem;
+    border: 1.5px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    color: #1a1a2e;
+    background: #ffffff;
+}
+
+.home-search-field input[type="text"]:focus {
+    border-color: #e94560;
+    box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.12);
+    outline: none;
+}
+
+.home-search-form button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+}
+
+.home-search-form button:hover {
+    transform: translateY(-1px);
+}
+
+.home-section-text {
+    color: #444;
+    margin-bottom: 1rem;
+}
+
+.home-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.home-table caption {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+    color: #1a1a2e;
+    text-align: left;
+}
+
+.home-table th {
+    background-color: #1a1a2e;
+    color: #ffffff;
+    padding: 0.75rem 1rem;
+    text-align: left;
+}
+
+.home-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.home-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.home-table tr:hover {
+    background-color: #fde8ec;
+}
+
+.home-hero-image {
+    display: block;
+    margin: 1rem auto 0;
+    width: 220px;
+    max-width: 70%;
+}
+
+@media (max-width: 768px) {
+    .home-hero {
+        background-image: linear-gradient(rgba(26, 26, 46, 0.92), rgba(26, 26, 46, 0.92));
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+
+    .home-search-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .home-search-form button {
+        width: 100%;
     }
 }

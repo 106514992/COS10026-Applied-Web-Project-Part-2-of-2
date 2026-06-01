@@ -1,6 +1,6 @@
 <?php
 session_start();
-$pageTitle = "About - Creative Digital Media Agency";
+$pageTitle = "About - MediaFlare";
 
 $pageStyles = '
 <style>
