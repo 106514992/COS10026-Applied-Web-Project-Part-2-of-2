@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$pageTitle = "Jobs - Creative Digital Media Agency";
+$pageTitle = "Jobs - MediaFlare";
 $author = "Charlie Payne";
 $pageStyles = '
     <style>
