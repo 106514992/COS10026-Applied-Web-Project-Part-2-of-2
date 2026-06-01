@@ -44,7 +44,7 @@ include 'header.inc';
 
         <section class="section-container">
             <h2 class="section-title">Search Opportunities</h2>
-            <form class="home-search-form" action="jobs.php" method="get">
+            <form class="home-search-form" action="jobs.php#jobs-content" method="get">
                 <div class="home-search-row">
                     <div class="home-search-field">
                         <label for="site-search">Search jobs:</label>
