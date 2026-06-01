@@ -1,6 +1,6 @@
 <!-- Navigation -->
 <nav aria-label="Main navigation">
-    <a href="jobs.php">
+    <a href="index.php">
         <img src="images/mediaflare_logo.svg" alt="MediaFlare logo" height="40" />
     </a>
 
