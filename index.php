@@ -45,11 +45,11 @@ include 'header.inc';
 
         <section class="section-container">
             <h2 class="section-title">Search Opportunities</h2>
-            <form class="home-search-form" action="jobs.html" method="get">
+            <form class="home-search-form" action="jobs.php" method="get">
                 <div class="home-search-row">
                     <div class="home-search-field">
                         <label for="site-search">Search jobs:</label>
-                        <input type="text" id="site-search" name="search" placeholder="Enter a role title">
+                        <input type="text" id="site-search" name="search_query" placeholder="Enter a role title">
                     </div>
                     <button type="submit" style="background-color: #e94560; color: #ffffff;">Search</button>
                 </div>
