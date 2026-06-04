@@ -142,6 +142,66 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 $pageTitle = "Manage EOIs - MediaFlare";
+
+$pageStyles = '
+<style>
+    .manage-eoi-section {
+        max-width: 100%;
+    }
+
+    .eoi-table-wrapper {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+        margin-top: 1rem;
+        border: 1px solid #d8dbe8;
+        border-radius: 8px;
+    }
+
+    .eoi-table {
+        width: 100%;
+        min-width: 1200px;
+        border-collapse: collapse;
+        background-color: #ffffff;
+    }
+
+    .eoi-table th,
+    .eoi-table td {
+        border: 1px solid #d8dbe8;
+        padding: 0.6rem;
+        text-align: left;
+        vertical-align: top;
+        overflow-wrap: anywhere;
+        word-break: normal;
+    }
+
+    .eoi-table th {
+        background-color: #f4f5f9;
+        color: #1a1f36;
+        font-weight: 700;
+    }
+
+    .eoi-table form {
+        margin: 0;
+    }
+
+    .eoi-table select,
+    .eoi-table input[type="submit"] {
+        max-width: 100%;
+        margin-top: 0.25rem;
+    }
+
+    .eoi-table-wrapper::-webkit-scrollbar {
+        height: 10px;
+    }
+
+    .eoi-table-wrapper::-webkit-scrollbar-thumb {
+        background-color: #c2c6d6;
+        border-radius: 5px;
+    }
+</style>
+';
+
 include "header.inc";
 include "nav.inc";
 ?>
@@ -215,71 +275,73 @@ include "nav.inc";
         </form>
     </section>
 
-    <section>
+    <section class="manage-eoi-section">
         <h2>EOI Results</h2>
 
         <?php if ($result && $result->num_rows > 0): ?>
-            <table border="1" cellpadding="6" cellspacing="0">
-                <thead>
-                    <tr>
-                        <th>EOI Number</th>
-                        <th>Job Ref</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>DOB</th>
-                        <th>Gender</th>
-                        <th>Address</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Skills</th>
-                        <th>Other Skills</th>
-                        <th>Status</th>
-                        <th>Update Status</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <?php while ($row = $result->fetch_assoc()): ?>
+            <div class="eoi-table-wrapper">
+                <table class="eoi-table">
+                    <thead>
                         <tr>
-                            <td><?php echo clean_output($row['EOInumber']); ?></td>
-                            <td><?php echo clean_output($row['job_reference']); ?></td>
-                            <td><?php echo clean_output($row['first_name']); ?></td>
-                            <td><?php echo clean_output($row['last_name']); ?></td>
-                            <td><?php echo clean_output($row['date_of_birth']); ?></td>
-                            <td><?php echo clean_output($row['gender']); ?></td>
-                            <td>
-                                <?php
-                                echo clean_output(
-                                    $row['street_address'] . ', ' .
-                                    $row['suburb'] . ' ' .
-                                    $row['state'] . ' ' .
-                                    $row['postcode']
-                                );
-                                ?>
-                            </td>
-                            <td><?php echo clean_output($row['email']); ?></td>
-                            <td><?php echo clean_output($row['phone']); ?></td>
-                            <td><?php echo clean_output($row['skills']); ?></td>
-                            <td><?php echo clean_output($row['other_skills']); ?></td>
-                            <td><?php echo clean_output($row['status']); ?></td>
-                            <td>
-                                <form action="manage.php" method="post" novalidate>
-                                    <input type="hidden" name="action" value="update_status">
-                                    <input type="hidden" name="EOInumber" value="<?php echo clean_output($row['EOInumber']); ?>">
-
-                                    <select name="status">
-                                        <option value="New" <?php if ($row['status'] === 'New') echo 'selected'; ?>>New</option>
-                                        <option value="Current" <?php if ($row['status'] === 'Current') echo 'selected'; ?>>Current</option>
-                                        <option value="Final" <?php if ($row['status'] === 'Final') echo 'selected'; ?>>Final</option>
-                                    </select>
-
-                                    <input type="submit" value="Update">
-                                </form>
-                            </td>
+                            <th>EOI Number</th>
+                            <th>Job Ref</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>DOB</th>
+                            <th>Gender</th>
+                            <th>Address</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Skills</th>
+                            <th>Other Skills</th>
+                            <th>Status</th>
+                            <th>Update Status</th>
                         </tr>
-                    <?php endwhile; ?>
-                </tbody>
-            </table>
+                    </thead>
+
+                    <tbody>
+                        <?php while ($row = $result->fetch_assoc()): ?>
+                            <tr>
+                                <td><?php echo clean_output($row['EOInumber']); ?></td>
+                                <td><?php echo clean_output($row['job_reference']); ?></td>
+                                <td><?php echo clean_output($row['first_name']); ?></td>
+                                <td><?php echo clean_output($row['last_name']); ?></td>
+                                <td><?php echo clean_output($row['date_of_birth']); ?></td>
+                                <td><?php echo clean_output($row['gender']); ?></td>
+                                <td>
+                                    <?php
+                                    echo clean_output(
+                                        $row['street_address'] . ', ' .
+                                        $row['suburb'] . ' ' .
+                                        $row['state'] . ' ' .
+                                        $row['postcode']
+                                    );
+                                    ?>
+                                </td>
+                                <td><?php echo clean_output($row['email']); ?></td>
+                                <td><?php echo clean_output($row['phone']); ?></td>
+                                <td><?php echo clean_output($row['skills']); ?></td>
+                                <td><?php echo clean_output($row['other_skills']); ?></td>
+                                <td><?php echo clean_output($row['status']); ?></td>
+                                <td>
+                                    <form action="manage.php" method="post" novalidate>
+                                        <input type="hidden" name="action" value="update_status">
+                                        <input type="hidden" name="EOInumber" value="<?php echo clean_output($row['EOInumber']); ?>">
+
+                                        <select name="status">
+                                            <option value="New" <?php if ($row['status'] === 'New') echo 'selected'; ?>>New</option>
+                                            <option value="Current" <?php if ($row['status'] === 'Current') echo 'selected'; ?>>Current</option>
+                                            <option value="Final" <?php if ($row['status'] === 'Final') echo 'selected'; ?>>Final</option>
+                                        </select>
+
+                                        <input type="submit" value="Update">
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endwhile; ?>
+                    </tbody>
+                </table>
+            </div>
         <?php else: ?>
             <p>No EOI records found.</p>
         <?php endif; ?>
