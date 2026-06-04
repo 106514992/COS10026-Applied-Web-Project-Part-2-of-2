@@ -142,65 +142,7 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 $pageTitle = "Manage EOIs - MediaFlare";
-
-$pageStyles = '
-<style>
-    .manage-eoi-section {
-        max-width: 100%;
-    }
-
-    .eoi-table-wrapper {
-        width: 100%;
-        max-width: 100%;
-        overflow-x: auto;
-        margin-top: 1rem;
-        border: 1px solid #d8dbe8;
-        border-radius: 8px;
-    }
-
-    .eoi-table {
-        width: 100%;
-        min-width: 1200px;
-        border-collapse: collapse;
-        background-color: #ffffff;
-    }
-
-    .eoi-table th,
-    .eoi-table td {
-        border: 1px solid #d8dbe8;
-        padding: 0.6rem;
-        text-align: left;
-        vertical-align: top;
-        overflow-wrap: anywhere;
-        word-break: normal;
-    }
-
-    .eoi-table th {
-        background-color: #f4f5f9;
-        color: #1a1f36;
-        font-weight: 700;
-    }
-
-    .eoi-table form {
-        margin: 0;
-    }
-
-    .eoi-table select,
-    .eoi-table input[type="submit"] {
-        max-width: 100%;
-        margin-top: 0.25rem;
-    }
-
-    .eoi-table-wrapper::-webkit-scrollbar {
-        height: 10px;
-    }
-
-    .eoi-table-wrapper::-webkit-scrollbar-thumb {
-        background-color: #c2c6d6;
-        border-radius: 5px;
-    }
-</style>
-';
+$pageStyles = "";
 
 include "header.inc";
 include "nav.inc";

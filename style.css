@@ -1,0 +1,1173 @@
+/* ========================
+   About Page CSS
+======================== */
+
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Add focus style for tab key navigation - does not conflict with any page styling.*/
+:focus-visible {
+    outline: 3px solid #e94560;
+    outline-offset: 2px;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f5f5f5;
+    color: #1a1a2e;
+    line-height: 1.7;
+}
+
+/* Nav */
+nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 1rem 2rem;
+    background-color: #1a1a2e;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+
+}
+
+.align-right {
+  margin-left: auto;
+}
+
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.95rem;
+}
+
+nav ul li a:hover {
+    color: #e94560;
+}
+
+nav img {
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    -moz-user-drag: none;
+    -webkit-tap-highlight-color: rgba(255,255,255,.1);
+}
+
+/* Hero */
+.about-hero {
+    position: relative;
+    overflow: hidden;
+    background-color: #1a1a2e;
+    color: #ffffff;
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.about-hero h1 {
+    font-size: 2.5rem;
+    color: #e94560;
+    margin-bottom: 0.5rem;
+}
+
+.about-hero p {
+    font-size: 1.1rem;
+    color: #cccccc;
+}
+
+/* Sections */
+.section-container {
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+}
+
+.section-title {
+    font-size: 1.6rem;
+    color: #1a1a2e;
+    border-left: 5px solid #e94560;
+    padding-left: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Acknowledgement */
+.acknowledgement {
+    background-color: #fff8e7;
+    border: 2px solid #e6a817;
+    border-radius: 8px;
+    padding: 1.5rem 2rem;
+}
+
+.acknowledgement h2 {
+    color: #7a4f00;
+    margin-bottom: 0.75rem;
+}
+
+.acknowledgement p {
+    color: #5a3e00;
+}
+
+/* Group Info List */
+.group-info-list {
+    list-style: disc;
+    padding-left: 1.5rem;
+    font-size: 1rem;
+    line-height: 2;
+}
+
+.group-info-list li ul {
+    list-style: circle;
+    padding-left: 1.5rem;
+}
+
+/* Member Definition List */
+dl.member-list {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1rem 1.5rem;
+}
+
+dl.member-list dt {
+    font-weight: bold;
+    color: #1a1a2e;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 1rem;
+}
+
+dl.member-list dd {
+    color: #444;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 1rem;
+    margin: 0;
+}
+
+/* Quote Block */
+.quote-block {
+    background: #f0f0f5;
+    border-left: 4px solid #e94560;
+    padding: 0.75rem 1rem;
+    margin-top: 0.75rem;
+    border-radius: 0 8px 8px 0;
+}
+
+.quote-block .original {
+    font-style: italic;
+    font-size: 1rem;
+    color: #222;
+}
+
+.quote-block .translation {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 0.25rem;
+}
+
+/* Footer */
+footer {
+    background-color: #1a1a2e;
+    color: #cccccc;
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: 3rem;
+    font-size: 0.9rem;
+}
+
+footer a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    dl.member-list {
+        grid-template-columns: 1fr;
+    }
+
+    .about-hero h1 {
+        font-size: 1.8rem;
+    }
+
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+
+}
+
+
+/* Group Photo */
+
+figure.group-photo {
+    border: 3px solid #1a1a2e;
+    display: inline-block;
+    padding: 0.5rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+figure.group-photo figcaption {
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 0.5rem;
+    font-style: italic;
+}
+
+/* Fun Facts Table */
+table.fun-facts {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+table.fun-facts caption {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+    color: #1a1a2e;
+    text-align: left;
+}
+
+table.fun-facts th {
+    background-color: #1a1a2e;
+    color: #ffffff;
+    padding: 0.75rem 1rem;
+    text-align: left;
+}
+
+table.fun-facts td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #ddd;
+}
+
+table.fun-facts tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+table.fun-facts tr:hover {
+    background-color: #fde8ec;
+}
+
+/* ==========================================================
+   apply.css — Job Application page styles- Ivan
+   Every selector is matched to IDs on apply.html. I MADE SURE IT DOESNT BREAK OTHER PAGES
+   ========================================================== */
+
+
+/*  Page background & centering  */
+
+#apply-main {
+    min-height: 100vh;
+    padding: 3rem 1.5rem 5rem;
+    background-color: #f5f5f5;
+}
+
+#apply-section {
+    max-width: 740px;
+    margin: 0 auto;
+}
+
+
+/*  Form - vertical stack of fieldsets  */
+
+#apply-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+
+#apply-form fieldset {
+    border: 1.5px solid #ddd;
+    padding: 1.75rem;
+    background: #ffffff;
+    border-radius: 8px;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* Nested fieldsets (Gender, Skill List) - lighter treatment */
+#fieldset-gender,
+#fieldset-skill-list {
+    border: 1px dashed #ddd;
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    box-shadow: none;
+    margin-top: 0.5rem;
+}
+
+/* Legend - uppercase label in brand pink */
+#apply-form legend {
+    font-size: 0.7rem;
+    font-weight: 700; /* bolds slightly*/
+    text-transform: uppercase;
+    color: #1a1a2e;
+    padding: 0 0.5rem;
+    background: #ffffff;
+    border: 1.5px solid #ddd;
+    border-radius: 8px;
+}
+
+
+/*  Field labels  */
+
+#apply-form label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin-top: 0.75rem;
+    display: block;
+}
+
+/* No extra top gap on the very first label in a fieldset */
+#apply-form fieldset > label:first-of-type {
+    margin-top: 0.25rem;
+}
+
+/* Radio / checkbox labels - horizontal, not block */
+#fieldset-gender label,
+#fieldset-skill-list label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 400;
+    color: #1a1a2e;
+    margin-top: 0.4rem;
+    cursor: pointer;
+}
+
+
+/* Text inputs, email, tel, select, textarea  */
+
+#apply-form input[type="text"],
+#apply-form input[type="email"],
+#apply-form input[type="tel"],
+#apply-form select,
+#apply-form textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.6rem 0.85rem;
+    border: 1.5px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-family: inherit;
+    color: #1a1a2e;
+    background: #fff;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    outline: none;
+}
+
+/* "Focus ring" for select section brings emphasis to it */
+#apply-form input[type="text"]:focus,
+#apply-form input[type="email"]:focus,
+#apply-form input[type="tel"]:focus,
+#apply-form select:focus,
+#apply-form textarea:focus {
+    border-color: #e94560;
+    box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.12);
+}
+
+#apply-form textarea {
+    resize: vertical;
+    min-height: 110px;
+    line-height: 1.5;
+}
+
+/*  Radio and checkbox inputs  */
+
+#fieldset-gender input[type="radio"],
+#fieldset-skill-list input[type="checkbox"] {
+    accent-color: #e94560;
+
+    cursor: pointer;
+
+}
+
+
+/*  Hint text below inputs  */
+
+#apply-form small {
+    font-size: 0.76rem;
+    color: #666;
+    display: block;
+}
+
+
+/*  Validation colours (only after user interaction)  */
+
+/* Red border when a field has content that fails validation */
+#apply-form select:invalid:not(:focus) {
+    border-color: #e94560;
+}
+
+/* Green border once a field is filled in correctly */
+#apply-form input:valid:not(:placeholder-shown) {
+    border-color: #2ecc7a;
+}
+
+
+/*  Submit button */
+
+
+#apply-submit {
+    align-self: flex-start;
+    padding: 0.75rem 2rem;
+    color: #1a1a2e;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+
+
+}
+
+#apply-submit:hover {
+    transform: translateY(-1px);
+}
+
+
+
+/*  Responsiveness - single-column on small screens  */
+
+@media (max-width: 600px) {
+    #apply-main {
+        padding: 2rem 1rem 4rem;
+    }
+
+    #apply-form fieldset {
+        padding: 1.25rem 1rem;
+    }
+
+    #apply-submit {
+        width: 100%;
+    }
+}
+
+
+/* ==========================================================
+   jobs.css — Job listing page styles - Charlie
+   Every selector is matched to classes and IDs on jobs.html. I also ensured no other pages are affected by these styles
+   ========================================================== */
+
+#jobs-aside {
+    background-color: transparent;
+}
+
+/* Jobs page hero styling */
+
+.jobs-hero {
+    background-color: #1a1a2e;
+    color: #ffffff;
+    padding: 4rem 2rem;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Animated shape in hero */
+.hero-shape {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100%;
+    background-color: #e94560;
+    clip-path: polygon(52% 0%, 0% 0%, 0% 100%, 100% 100%); /*(x,y) for each corner (clockwise) */
+    opacity: 0.15;
+    transform: translateX(-100%);
+    animation: shapeSlide 0.8s cubic-bezier(0.2, 1, 0.3, 1) forwards;
+    animation-delay: 0.5s;
+}
+
+/* Animation for hero shape */
+@keyframes shapeSlide {
+    to {
+        transform: translateX(0);
+    }
+}
+
+#jobs-page-title, #home-page-title {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: titleReveal 0.9s cubic-bezier(0.2, 1, 0.3, 1) forwards;
+    animation-delay: 0.2s;
+}
+
+.jobs-hero h1 {
+    font-size: 2.5rem;
+    color: #e94560;
+    margin-bottom: 0.5rem;
+    position: relative;
+}
+
+.jobs-hero p {
+    font-size: 1.1rem;
+    color: #cccccc;
+    position: relative;
+}
+
+/* Animation for hero h1 */
+@keyframes titleReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Main page content styling */
+
+#jobs-main {
+    max-width: 1100px;
+    margin: auto;
+    overflow: hidden;
+}
+
+/* Contains all job listings */
+#jobs-content {
+    margin-right: calc(25% + 2rem);
+    padding: 2rem;
+}
+
+@media (max-width: 650px) {
+    #jobs-content {
+        padding:2rem 1rem;
+    }
+}
+
+/* For any sections on Jobs page */
+.jobs-section-container {
+    margin-bottom: 2rem;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+}
+
+.jobs-section-container h3 {
+    margin-top: 1rem;
+}
+
+.job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.job-header h2 {
+    margin-right: 2rem;
+}
+
+.jobs-reference-number {
+    text-align: right;
+    font-style: italic;
+    color: #555555;
+    font-size: 0.9em;
+}
+
+#jobs-content section ul {
+    list-style-type: disc;
+    margin-left: 30px;
+}
+
+#jobs-content section ol {
+    margin-left: 30px;
+}
+
+#jobs-search-form {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 3rem;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 2rem;
+}
+
+@media (max-width: 570px) {
+    #jobs-search-form {
+        padding: 0;
+    }
+
+    .jobs-hero {
+        padding: 3rem 1.2rem;
+    }
+    
+    nav ul {
+        text-align: center;
+    }
+
+}
+
+@media (max-width: 461px) {
+    /* necessary to allow search button click */
+    .hero-shape {
+        z-index: 0;
+    }
+
+    #jobs-search-form {
+        position: relative;
+        /* z-index: 999; */
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .search-wrapper {
+        width: 100%;
+    }
+
+    #jobs-search-form button {
+        width: 100%;
+        margin: 0;
+    }
+}
+
+.search-wrapper {
+    flex: 1;
+    position: relative;
+}
+
+#jobs-search-form input[type="text"] {
+    width: 100%;
+    padding: 0.7rem 0.85rem 0.7rem 2.5rem;
+    border: 1.5px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    color: #1a1a2e;
+    text-overflow: ellipsis;
+}
+
+#jobs-search-form input[type="text"]:focus {
+    border-color: #e94560;
+    box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.12);
+    outline: none;
+}
+
+.search-icon {
+    position: absolute;
+    pointer-events: none;
+    left: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 25px;
+    height: 25px;
+    opacity: 0.7;
+}
+
+#jobs-search-form button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+
+    background-color: #e94560;
+    color: #ffffff;
+}
+
+#jobs-search-form button:hover {
+    transform: translatey(-2px);
+    box-shadow: 0 4px 8px rgba(233, 69, 96, 0.2);
+}
+
+.jobs-section-container mark {
+    background-color: #457ee941;
+    padding: 0 0.1rem;
+    border-radius: 2px;
+}
+
+/* Clear search button */
+.clear-search-wrapper {
+    position: absolute;
+    right: 0.9rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.clear-search-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 32px;
+    height: 32px;
+    background-color: rgba(0, 0, 0, 0.15);
+    border-radius: 50%;
+    transition: transform 0.15s ease;
+}
+
+.clear-search-wrapper:hover::before {
+    transform: translate(-50%, -50%) scale(0.9);
+}
+
+.clear-search-icon {
+    width: 18px;
+    height: 18px;
+    opacity: 0.7;
+    transition: opacity 0.15s ease;
+    position: relative;
+}
+
+.clear-search-wrapper:hover
+.clear-search-icon:hover {
+    opacity: 1;
+}
+/* Clear search button styling end */
+
+
+
+/* ==========================================================
+   login.css — Log in page styles - Charlie
+   ========================================================== */
+
+#login-main {
+    min-height: 100vh;
+    background-color: #f5f5f5;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#login-section {
+    width: 35%;
+    min-width: 428px;
+    max-width: 600px;
+    margin: 0;
+    margin-top: -10vh;
+    padding-bottom: 0;
+}
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    padding: 2rem;
+    padding-top: 1rem;
+}
+
+/*  Field labels  */
+
+#login-form label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin-top: 0.75rem;
+    display: block;
+}
+
+/* Text inputs, email, tel, select, textarea  */
+
+#login-form input[type="text"],
+#login-form input[type="password"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.6rem 0.85rem;
+    border: 1.5px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: inherit;
+    color: #1a1a2e;
+    background: #fff;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    outline: none;
+    text-overflow: ellipsis;
+}
+
+/* "Focus ring" for select section brings emphasis to it */
+#login-form input[type="text"]:focus,
+#login-form input[type="password"]:focus {
+    border-color: #e94560;
+    box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.12);
+}
+
+#login-form textarea {
+    resize: vertical;
+    min-height: 110px;
+    line-height: 1.5;
+}
+
+/*  Hint text below inputs  */
+
+#login-form small {
+    font-size: 0.76rem;
+    color: #666;
+    display: block;
+}
+
+
+/*  Validation colours (only after user interaction)  */
+
+/* Red border when a field has content that fails validation */
+/* #login-form select:invalid:not(:focus) {
+    border-color: #e94560;
+} */
+
+/*  Submit button */
+
+#login-submit {
+    align-self: flex-start;
+    padding: 0.75rem 2rem;
+    color: #1a1a2e;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    background-color: #e94560;
+    color: #ffffff;
+    transition: transform 0.15s ease;
+}
+
+#login-submit:hover {
+    transform: translateY(-2px);
+}
+
+/*  Responsiveness - single-column on small screens  */
+
+@media (max-width: 768px) {
+    #login-main {
+        padding: 2rem 1rem 4rem;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        max-height: 80vh;
+    }
+
+    #login-submit {
+        align-self: center;
+        width: 80%;
+    }
+    
+    #login-section {
+        padding: 2rem;
+        width: 100%;
+        min-width: unset;
+        margin-top: unset;
+    }
+
+    #login-form {
+        padding: 0 2rem ;
+    }
+}
+
+.form-heading {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--navy, #1a1f36);
+    margin-bottom: 1.75rem;
+    padding-left: 1rem;
+    border-left: 4px solid #e8385a;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+}
+
+#login-error {
+    color: red;
+}
+
+.login-title-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.login-title-wrapper img {
+    pointer-events: none;
+    margin-top: 7px;
+    user-select: none;
+    -webkit-user-drag: none;
+    -moz-user-drag: none;
+    -webkit-tap-highlight-color: rgba(255,255,255,.1);
+}
+
+@media (max-width: 520px) {
+    #login-submit {
+        width: 100%;
+    }
+
+    #login-form {
+        padding: 0rem;
+    }
+
+    .login-title-wrapper {
+        flex-direction: column-reverse;
+        align-items: center;
+        gap: 2rem;
+    }
+
+
+}
+
+@media (max-width: 840px) {
+    .align-right {
+        margin-left: unset;
+    }
+}
+
+/* --------------------------------------------------- */
+/* ---------------- HOME PAGE STYLING ----------------*/
+/* --------------------------------------------------- */
+
+.home-hero-image {
+    display: block;
+    margin: 1rem auto 0;
+    width: 220px;
+    max-width: 70%;
+    position: relative;
+}
+
+/* Index Page */
+
+.home-hero {
+    background: linear-gradient(135deg, #1a1a2e 0%, #11142d 100%);
+}
+
+#home-main {
+    max-width: 1100px;
+    margin: auto;
+}
+
+.home-intro {
+    display: block;
+}
+
+.home-intro-text {
+    max-width: 800px;
+}
+
+.home-intro-text p {
+    color: #444;
+    margin-bottom: 1rem;
+}
+
+.home-search-form {
+    margin-top: 0.5rem;
+}
+
+.home-search-row {
+    display: flex;
+    gap: 1rem;
+    align-items: end;
+    flex-wrap: wrap;
+}
+
+.home-search-field {
+    flex: 1 1;
+}
+
+.home-search-field label {
+    display: block;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin-bottom: 0.5rem;
+}
+
+.home-search-field input[type="text"] {
+    width: 100%;
+    padding: 0.7rem 0.85rem;
+    border: 1.5px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    color: #1a1a2e;
+    background: #ffffff;
+}
+
+.home-search-field input[type="text"]:focus {
+    border-color: #e94560;
+    box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.12);
+    outline: none;
+}
+
+.home-search-form button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+}
+
+.home-search-form button:hover {
+    transform: translateY(-1px);
+}
+
+.home-section-text {
+    color: #444;
+    margin-bottom: 1rem;
+}
+
+.home-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.home-table caption {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+    color: #1a1a2e;
+    text-align: left;
+}
+
+.home-table th {
+    background-color: #1a1a2e;
+    color: #ffffff;
+    padding: 0.75rem 1rem;
+    text-align: left;
+}
+
+.home-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.home-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.home-table tr:hover {
+    background-color: #fde8ec;
+}
+
+.home-hero-image {
+    display: block;
+    margin: 1rem auto 0;
+    width: 220px;
+    max-width: 70%;
+}
+
+@media (max-width: 768px) {
+    .home-hero {
+        background-image: linear-gradient(rgba(26, 26, 46, 0.92), rgba(26, 26, 46, 0.92));
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+
+    .home-search-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .home-search-form button {
+        width: 100%;
+    }
+}
+
+.manage-eoi-section {
+    max-width: 100%;
+}
+
+.eoi-table-wrapper {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    margin-top: 1rem;
+    border: 1px solid #d8dbe8;
+    border-radius: 8px;
+    background-color: #ffffff;
+}
+
+.eoi-table {
+    width: max-content;
+    min-width: 1600px;
+    border-collapse: collapse;
+    background-color: #ffffff;
+}
+
+.eoi-table th,
+.eoi-table td {
+    border: 1px solid #d8dbe8;
+    padding: 0.6rem;
+    text-align: left;
+    vertical-align: top;
+    word-break: normal;
+    overflow-wrap: normal;
+}
+
+.eoi-table th {
+    background-color: #f4f5f9;
+    color: #1a1a2e;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.eoi-table td:nth-child(1),
+.eoi-table td:nth-child(2),
+.eoi-table td:nth-child(3),
+.eoi-table td:nth-child(4),
+.eoi-table td:nth-child(5),
+.eoi-table td:nth-child(6),
+.eoi-table td:nth-child(8),
+.eoi-table td:nth-child(9),
+.eoi-table td:nth-child(10),
+.eoi-table td:nth-child(12),
+.eoi-table td:nth-child(13) {
+    white-space: nowrap;
+}
+
+
+.eoi-table td:nth-child(7),
+.eoi-table td:nth-child(11) {
+    min-width: 220px;
+    max-width: 300px;
+    white-space: normal;
+}
+
+.eoi-table form {
+    margin: 0;
+    white-space: nowrap;
+}
+
+.eoi-table select,
+.eoi-table input[type="submit"] {
+    max-width: 100%;
+    margin-top: 0.25rem;
+}
+
+.eoi-table-wrapper::-webkit-scrollbar {
+    height: 10px;
+}
+
+.eoi-table-wrapper::-webkit-scrollbar-thumb {
+    background-color: #c2c6d6;
+    border-radius: 5px;
+}
